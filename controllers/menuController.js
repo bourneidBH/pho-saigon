@@ -5,7 +5,7 @@ module.exports = {
   findAll: function(req, res) {
     db.MenuItem
       .find(req.query)
-      .sort({ date: -1 })
+      .sort({ menuItemId: 1 })
       .then(dbMenuItems => res.json(dbMenuItems))
       .catch(err => console.log(err));
   },

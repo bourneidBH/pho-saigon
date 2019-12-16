@@ -1,0 +1,23 @@
+.bg-light, navbar-light {
+    background-color: rgba(255, 255, 255, 0)!important;
+}
+.fixed-top {
+    top: 70px!important;
+}
+.navbar-nav {
+    margin: auto;
+}
+.navbar-nav .nav-link {
+    color: #000!important;
+    padding-left: 1rem!important;
+    padding-right: 1rem!important;
+}
+.nav-link:hover {
+    color: #0d5243!important;
+}
+.menu-left {
+    margin-right: 200px;
+} 
+.menu-right {
+    margin-left: 200px;
+}
