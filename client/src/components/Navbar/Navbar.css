@@ -1,23 +1,53 @@
 .bg-light, navbar-light {
-    background-color: rgba(255, 255, 255, 0)!important;
+    background-color: rgba(255, 255, 255, 0) !important;
 }
 .fixed-top {
-    top: 70px!important;
+    top: 70px !important;
 }
 .navbar-nav {
     margin: auto;
 }
 .navbar-nav .nav-link {
-    color: #000!important;
-    padding-left: 1rem!important;
-    padding-right: 1rem!important;
+    color: #000 !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
 }
 .nav-link:hover {
-    color: #0d5243!important;
+    color: #0d5243 !important;
 }
 .menu-left {
-    margin-right: 200px;
+    margin-right: 10rem;
 } 
 .menu-right {
-    margin-left: 200px;
+    margin-left: 10rem;
 }
+
+@media (max-width: 992px) {
+    .navbar-nav .nav-link {
+        padding-left: .5rem !important;
+        padding-right: .5rem !important;
+    }
+    .menu-left {
+        margin-right: 8rem;
+    } 
+    .menu-right {
+        margin-left: 10rem;
+    }
+}
+
+@media (max-width: 991px) {
+    .navbar-nav .nav-link {
+        background-color: #0d5243 !important;
+        color: #fff !important;
+    }
+    .nav-link:hover {
+        background-color: #11735e !important;
+    }
+    .menu-left {
+        margin-right: 0;
+    } 
+    .menu-right {
+        margin-left: 0;
+    }
+}
+

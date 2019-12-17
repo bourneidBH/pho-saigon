@@ -1,5 +1,5 @@
 .logo-box {
-    width: 300px;
+    max-width: 30%;
     position: relative;
     margin: auto;
     padding-top: 20px;
@@ -11,7 +11,7 @@
 
 @media (max-width: 600px) {
     .logo-box {
-        width: 180px;
+        max-width: 50%;
         top: 10px;
     }
 }

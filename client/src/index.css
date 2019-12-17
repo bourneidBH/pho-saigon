@@ -23,3 +23,9 @@ code {
   box-shadow: 10px 10px 30px #666;
   min-height: 100%;
 }
+
+@media (max-width: 991px) {
+  .bg-main {
+    min-width: 100%;
+  }
+}
