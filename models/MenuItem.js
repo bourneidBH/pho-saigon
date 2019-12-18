@@ -17,7 +17,7 @@ const MenuItemSchema = new Schema({
         type: String,
         trim: true
     },
-    menuCategory: {
+    categoryName: {
         type: String,
         required: true,
         trim: true

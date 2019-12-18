@@ -1,3 +1,4 @@
 module.exports = {
-    MenuItem: require("./MenuItem")
+    MenuItem: require("./MenuItem"),
+    MenuCategory: require("./MenuCategory")
 };
