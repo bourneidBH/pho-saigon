@@ -1,7 +1,43 @@
 const db = require("../models");
 
-// Defining methods for the MenuItemsController
+// Defining methods for the Menu Controller
 module.exports = {
+  // MenuCategory functions
+  // findAll: function(req, res) {
+  //   db.MenuCategory.aggregate([{
+  //     $lookup: {
+  //       from: "MenuItem",
+  //       localField: "categoryName",
+  //       foreignField: "categoryName",
+  //       as: "categoryItem"
+  //     }
+  //   }])
+  //   .then(dbMenuCategory => {
+  //     console.log(dbMenuCategory);
+  //     res.json(dbMenuCategory);
+  //   })
+  //   .catch(err => console.log(err));
+  // },
+  // create: function(req, res) {
+  //   db.MenuCategory
+  //     .create(req.body)
+  //     .then(dbMenuCategory => res.json(dbMenuCategory))
+  //     .catch(err => console.log(err));
+  // },
+  // update: function(req, res) {
+  //   db.MenuCategory
+  //     .findOneAndUpdate({ _id: req.params.id }, req.body)
+  //     .then(dbMenuCategory => res.json(dbMenuCategory))
+  //     .catch(err => console.log(err));
+  // },
+  // remove: function(req, res) {
+  //   db.MenuCategory
+  //     .findById({ _id: req.params.id })
+  //     .then(dbMenuCategory => dbMenuCategory.remove())
+  //     .then(dbMenuCategories => res.json(dbMenuCategories))
+  //     .catch(err => console.log(err));
+  // },
+  // MenuItem functions
   findAll: function(req, res) {
     db.MenuItem
       .find(req.query)

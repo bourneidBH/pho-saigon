@@ -13,7 +13,7 @@ function Navbar() {
 
                 <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div className="navbar-nav">
-                        <a className="nav-item nav-link" href="#">Menu</a>
+                        <a className="nav-item nav-link" href="/menu">Menu</a>
                         <a className="nav-item nav-link menu-left" href="#">Find Us</a>
                         <a className="nav-item nav-link menu-right" href="#">About</a>
                         <a className="nav-item nav-link" href="#">Contact</a>

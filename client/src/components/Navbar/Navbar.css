@@ -2,7 +2,7 @@
     background-color: rgba(255, 255, 255, 0) !important;
 }
 .fixed-top {
-    top: 70px !important;
+    top: 5.5rem !important;
 }
 .navbar-nav {
     margin: auto;
@@ -19,7 +19,7 @@
     margin-right: 10rem;
 } 
 .menu-right {
-    margin-left: 10rem;
+    margin-left: 15rem;
 }
 
 @media (max-width: 992px) {

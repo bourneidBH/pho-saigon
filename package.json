@@ -24,8 +24,10 @@
   },
   "homepage": "https://github.com/BourneID7/pho-saigon#readme",
   "dependencies": {
+    "axios": "^0.19.0",
     "express": "^4.17.1",
     "if-env": "^1.0.4",
+    "mongo-seeding": "^3.4.0-alpha.1",
     "mongoose": "^5.8.1"
   },
   "devDependencies": {
