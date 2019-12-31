@@ -22,18 +22,8 @@ class AdminAddMenuItem extends React.Component {
     // Load all menu items & set them to this.state.menuItems
     loadMenuItems = () => {
         API.getMenuItems()
-        .then(res => 
-            this.setState({
-                menuItems: res.data, 
-                menuItemId: "",
-                itemName: "",
-                itemNameVietnamese: "",
-                description: "",
-                categoryName: "",
-                price: 0,
-                image: ""
-             })
-             .catch(err => console.log(err)))
+        .then(res => this.setState({menuItems: res.data}))
+        .catch(err => console.log(err))
     };
 
     // Handles updating component state when the user types into the input field

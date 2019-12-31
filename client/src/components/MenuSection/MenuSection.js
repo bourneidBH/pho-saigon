@@ -1,7 +1,7 @@
 import React from "react";
 import API from "../../utils/API.js";
 import "./MenuSection.css";
-// import Container from "../Container";
+import Container from "../Container";
 import MenuItem from "../MenuItem";
 
 class MenuSection extends React.Component {
@@ -43,16 +43,24 @@ class MenuSection extends React.Component {
                     ))}
                     </Container>
                 ))} */}
-                {this.state.menu.map(menuItem => (
-                    <MenuItem key={menuItem._id}
-                        menuItemId={menuItem.menuItemId}
-                        itemName={menuItem.itemName}
-                        itemNameVietnamese={menuItem.itemNameVietnamese}
-                        description={menuItem.description}
-                        price={menuItem.price}
-                        image={menuItem.image}
-                    />
-                ))}
+                <Container>
+                    <div className="inner">
+                        <h3>Appetizers</h3>
+                        {this.state.menu.map(menuItem => {
+                            if (menuItem.categoryName === "Appetizers") {
+                            return <MenuItem key={menuItem._id}
+                                menuItemId={menuItem.menuItemId}
+                                itemName={menuItem.itemName}
+                                itemNameVietnamese={menuItem.itemNameVietnamese}
+                                description={menuItem.description}
+                                categoryName={menuItem.categoryName}
+                                price={menuItem.price}
+                                image={menuItem.image}
+                            />
+                            }
+                        })}
+                    </div>
+                </Container>
             </div>
         )
     };

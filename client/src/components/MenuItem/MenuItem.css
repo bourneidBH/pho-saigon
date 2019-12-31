@@ -1,6 +1,12 @@
+.col-md-1 {
+    align-self: flex-end;
+}
 .price {
     float: right;
     font-weight: bold;
+}
+.row {
+    margin-bottom: 20px;
 }
 img {
     max-width: 100%;

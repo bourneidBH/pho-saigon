@@ -12,7 +12,7 @@ function MenuForm(props) {
         price,
         image,
         handleChange,
-        handleSelectionChange,
+        // handleSelectionChange,
         handleFormSubmit
     } = props;
 
@@ -37,7 +37,7 @@ function MenuForm(props) {
                 </div>
                 <div class="form-group">
                     <label for="categoryName">Menu Category</label>
-                    <select className="form-control" id="categoryName" name="categoryName" defaultValue={categoryName} onChange={handleSelectionChange}>
+                    <select className="form-control" id="categoryName" name={categoryName} defaultValue="None" onChange={handleChange}>
                         <option value="None" disabled>Select the category for this item</option>
                         <option value="Appetizers">Appetizers</option>
                         <option value="Salads">Salads</option>
