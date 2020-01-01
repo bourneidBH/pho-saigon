@@ -10,9 +10,9 @@ function MenuForm(props) {
         description,
         categoryName,
         price,
-        image,
+        // image,
         handleChange,
-        // handleSelectionChange,
+        handleSelectionChange,
         handleFormSubmit
     } = props;
 
@@ -20,24 +20,24 @@ function MenuForm(props) {
         <Container>
             <form>
                 <div className="form-group">
-                    <label for="menuItemID">Item ID</label>
+                    <label htmlFor="menuItemID">Item ID</label>
                     <input className="form-control" name="menuItemID" id="menuItemID" defaultValue={menuItemID} type="text" placeholder="Item ID" onChange={handleChange} />
                 </div>
                 <div className="form-group">
-                    <label for="itemName">Item Name</label>
+                    <label htmlFor="itemName">Item Name</label>
                     <input className="form-control" name="itemName" id="itemName" defaultValue={itemName} type="text" placeholder="Item Name" onChange={handleChange} />
                 </div>
                 <div className="form-group">
-                    <label for="itemNameVietnamese">Vietnamese Name</label>
+                    <label htmlFor="itemNameVietnamese">Vietnamese Name</label>
                     <input className="form-control" name="itemNameVietnamese" id="itemNameVietnamese" defaultValue={itemNameVietnamese} type="text" placeholder="Vietnamese Name" onChange={handleChange} />
                 </div>
                 <div className="form-group">
-                    <label for="description">Description</label>
+                    <label htmlFor="description">Description</label>
                     <input className="form-control" name="description" description="description" defaultValue={description} type="text" placeholder="Item description" size="50" onChange={handleChange} />
                 </div>
-                <div class="form-group">
-                    <label for="categoryName">Menu Category</label>
-                    <select className="form-control" id="categoryName" name={categoryName} defaultValue="None" onChange={handleChange}>
+                <div className="form-group">
+                    <label htmlFor="categoryName">Menu Category</label>
+                    <select className="form-control" id="categoryName" name={categoryName} defaultValue="None" onChange={handleSelectionChange}>
                         <option value="None" disabled>Select the category for this item</option>
                         <option value="Appetizers">Appetizers</option>
                         <option value="Salads">Salads</option>
@@ -51,13 +51,13 @@ function MenuForm(props) {
                     </select>
                 </div>
                 <div className="form-group">
-                    <label for="price">Price</label>
+                    <label htmlFor="price">Price</label>
                     <input className="form-control" name="price" id="price" defaultValue={price} type="number" step={0.01} placeholder="price" onChange={handleChange} />
                 </div>
-                <div class="form-group">
-                    <label for="image">Upload Image</label>
+                {/* <div className="form-group">
+                    <label htmlFor="image">Upload Image</label>
                     <input type="file" className="form-control-file" id="image" value={image} />
-                </div>
+                </div> */}
                 <button className="btn btn-primary" type="submit" name="action" onClick={handleFormSubmit}>Add Item</button>
             </form>
         </Container>

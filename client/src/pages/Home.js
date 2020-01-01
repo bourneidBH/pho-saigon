@@ -1,13 +1,16 @@
 import React from "react";
-import Jumbotron from "../components/Jumbotron";
+import Header from "../components/Header";
 
 function Home() {
-    return <div>
-        <Jumbotron 
+    return (
+    <div>
+        <Header 
             h1="Vietnamese Restaurant"
             lead="Authentic Vietnamese and Chinese cuisine in West Allis"
         />
+        <main></main>
     </div>
+    )
 };
 
 export default Home;

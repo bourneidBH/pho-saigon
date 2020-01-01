@@ -1,13 +1,17 @@
 import React from "react";
-import Jumbotron from "../components/Jumbotron"
+import Header from "../components/Header"
 
 function NoMatch() {
-    return <div>
-        <Jumbotron 
+    return (
+    <div>
+        <Header 
         h1="Sorry, page not found"
         />
-        <p>Go <a href="/">home</a> to try again.</p>
+        <main>
+            <p>Go <a href="/">home</a> to try again.</p>
+        </main>
     </div>
+    )
 };
 
 export default NoMatch;

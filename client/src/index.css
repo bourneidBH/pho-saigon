@@ -19,6 +19,7 @@ code {
     monospace;
 }
 .bg-main {
+  position: relative;
   background-color: rgba(255, 255, 255, 0.75);
   box-shadow: 10px 10px 30px #666;
   min-height: 100%;
@@ -33,4 +34,5 @@ code {
   .bg-main {
     min-width: 100%;
   }
+  
 }

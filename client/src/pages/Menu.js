@@ -1,15 +1,19 @@
 import React from "react";
 import MenuSection from "../components/MenuSection";
-import Jumbotron from "../components/Jumbotron";
+import Header from "../components/Header";
 
 function Menu() {
-    return <div>
-        <Jumbotron 
+    return (
+    <div>
+        <Header 
             h1="Menu"
             lead="Authentic Vietnamese and Chinese cuisine in West Allis"
         />
-        <MenuSection />
+        <main>
+            <MenuSection />
+        </main>
     </div>
+    )
 };
 
 export default Menu;
