@@ -8,6 +8,7 @@ export default {
   
   // save menu item to database
   saveItem: itemData => {
+    console.log("data to save: ", itemData);
     return axios.post('/api/menu', itemData);
   },
 

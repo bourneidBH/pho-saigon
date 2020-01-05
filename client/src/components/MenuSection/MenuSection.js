@@ -29,18 +29,20 @@ class MenuSection extends React.Component {
             <div>
                 {/* {this.state.menu.map(MenuCategory => (
                     <Container key={MenuCategory._id}>
-                        <h2>{MenuCategory.categoryName}</h2>
+                        <div className="inner">
+                        <h3>{MenuCategory.categoryName}</h3>
 
                         {this.state.menu.map(MenuCategory => (
-                        <MenuItem key={MenuCategory.categoryItem.menuItemId} 
-                        menuItemId={MenuCategory.categoryItem.menuItemId}
-                        itemName={MenuCategory.categoryItem.itemName}
-                        itemNameVietnamese={MenuCategory.categoryItem.itemNameVietnamese}
-                        description={MenuCategory.categoryItem.description}
-                        price={MenuCategory.categoryItem.price}
-                        image={MenuCategory.categoryItem.image}
-                        />
-                    ))}
+                            <MenuItem key={MenuCategory.categoryItems._id} 
+                            menuItemId={MenuCategory.categoryItems.menuItemId}
+                            itemName={MenuCategory.categoryItems.itemName}
+                            itemNameVietnamese={MenuCategory.categoryItems.itemNameVietnamese}
+                            description={MenuCategory.categoryItems.description}
+                            price={MenuCategory.categoryItems.price}
+                            image={MenuCategory.categoryItems.image}
+                            />
+                        ))}
+                        </div>
                     </Container>
                 ))} */}
                 <Container>

@@ -15,7 +15,7 @@ function MenuItem(props) {
             </div>
             <div className="col-md-1">
                 <p className="price">
-                    ${price || "Market price"}
+                    {price ? "$" + price : "Market price"}
                 </p>
             </div>
         </div>

@@ -19,6 +19,7 @@ const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost:27017/phoSai
 
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.set('useFindAndModify', false);
+mongoose.set('useCreateIndex', true);
 
 // Start the API server
 app.listen(PORT, function() {
