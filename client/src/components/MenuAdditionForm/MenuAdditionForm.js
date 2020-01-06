@@ -21,19 +21,19 @@ function MenuForm(props) {
             <form>
                 <div className="form-group">
                     <label htmlFor="menuItemID">Item ID</label>
-                    <input className="form-control" name="menuItemID" id="menuItemID" defaultValue={menuItemID} type="text" placeholder="Item ID" onChange={handleChange} />
+                    <input className="form-control" name="menuItemID" id="menuItemID" value={menuItemID} type="text" placeholder="Item ID" onChange={handleChange} />
                 </div>
                 <div className="form-group">
                     <label htmlFor="itemName">Item Name</label>
-                    <input className="form-control" name="itemName" id="itemName" defaultValue={itemName} type="text" placeholder="Item Name" onChange={handleChange} />
+                    <input className="form-control" name="itemName" id="itemName" value={itemName} type="text" placeholder="Item Name" onChange={handleChange} />
                 </div>
                 <div className="form-group">
                     <label htmlFor="itemNameVietnamese">Vietnamese Name</label>
-                    <input className="form-control" name="itemNameVietnamese" id="itemNameVietnamese" defaultValue={itemNameVietnamese} type="text" placeholder="Vietnamese Name" onChange={handleChange} />
+                    <input className="form-control" name="itemNameVietnamese" id="itemNameVietnamese" value={itemNameVietnamese} type="text" placeholder="Vietnamese Name" onChange={handleChange} />
                 </div>
                 <div className="form-group">
                     <label htmlFor="description">Description</label>
-                    <input className="form-control" name="description" description="description" defaultValue={description} type="text" placeholder="Item description" size="50" onChange={handleChange} />
+                    <input className="form-control" name="description" description="description" value={description} type="text" placeholder="Item description" size="50" onChange={handleChange} />
                 </div>
                 <div className="form-group">
                     <label htmlFor="categoryName">Menu Category</label>
@@ -52,7 +52,7 @@ function MenuForm(props) {
                 </div>
                 <div className="form-group">
                     <label htmlFor="price">Price</label>
-                    <input className="form-control" name="price" id="price" defaultValue={price} type="number" step={0.01} placeholder="price" onChange={handleChange} />
+                    <input className="form-control" name="price" id="price" value={price} type="number" step={0.01} placeholder="price" onChange={handleChange} />
                 </div>
                 <div className="form-group">
                     <label htmlFor="image">Image File Name</label>
