@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "../components/Header";
-import MenuAdditionForm from "../components/MenuAdditionForm";
+// import MenuAdditionForm from "../components/MenuAdditionForm";
+import Container from "../components/Container";
 import API from "../utils/API";
 
 class AdminAddMenuItem extends React.Component {
@@ -51,7 +52,7 @@ class AdminAddMenuItem extends React.Component {
         console.log("item to be added: ", newItem);
 
 
-        // if (this.state.menuItemId && this.state.itemName && this.state.categoryName) {
+        if (this.state.menuItemId && this.state.itemName && this.state.categoryName) {
             API.saveItem(newItem)
             .then(API.getMenuItems()
                 .then(res => {
@@ -72,7 +73,7 @@ class AdminAddMenuItem extends React.Component {
                 image: "",
             })
         };
-    // };
+    };
 
     render() {
         return(
@@ -81,19 +82,63 @@ class AdminAddMenuItem extends React.Component {
                     h1="Add a menu item"
                 />
                 <main>
-                    <MenuAdditionForm
-                    menuItemId={this.props.menuItemId}
-                    itemName={this.props.itemName}
-                    itemNameVietnamese={this.props.itemNameVietnamese}
-                    description={this.props.description}
-                    categoryName={this.props.categoryName}
-                    price={this.props.price}
-                    image={this.props.image}
+                    {/* <MenuAdditionForm
+                    menuItemId={this.state.menuItemId}
+                    itemName={this.state.itemName}
+                    itemNameVietnamese={this.state.itemNameVietnamese}
+                    description={this.state.description}
+                    categoryName={this.state.categoryName}
+                    price={this.state.price}
+                    image={this.state.image}
                     handleChange={this.props.handleChange}
                     handleSelectionChange={this.props.handleSelectionChange}
-                    onClick={this.props.handleFormSubmit}
-                    />
+                    handleFormSubmit={this.handleFormSubmit}
+                    /> */}
 
+                    <Container>
+                        <form>
+                            <div className="form-group">
+                                <label htmlFor="menuItemId">Item ID</label>
+                                <input className="form-control" name="menuItemId" id="menuItemId" value={this.state.menuItemId} type="text" placeholder="Item ID" onChange={this.handleChange} />
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="itemName">Item Name</label>
+                                <input className="form-control" name="itemName" id="itemName" value={this.state.itemName} type="text" placeholder="Item Name" onChange={this.handleChange} />
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="itemNameVietnamese">Vietnamese Name</label>
+                                <input className="form-control" name="itemNameVietnamese" id="itemNameVietnamese" value={this.state.itemNameVietnamese} type="text" placeholder="Vietnamese Name" onChange={this.handleChange} />
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="description">Description</label>
+                                <input className="form-control" name="description" description="description" value={this.state.description} type="text" placeholder="Item description" size="50" onChange={this.handleChange} />
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="categoryName">Menu Category</label>
+                                <select className="form-control" id="categoryName" name="categoryName" defaultValue="None" onChange={this.handleSelectionChange}>
+                                    <option value="None" disabled>Select the category for this item</option>
+                                    <option value="Appetizers">Appetizers</option>
+                                    <option value="Salads">Salads</option>
+                                    <option value="Sandwiches">Sandwiches</option>
+                                    <option value="Pho">Pho</option>
+                                    <option value="Specials">Specials</option>
+                                    <option value="Hot Pots">Hot Pots</option>
+                                    <option value="Vermicelli (Dry Noodles)">Vermicelli (Dry Noodles)</option>
+                                    <option value="Rice Dishes">Rice Dishes</option>
+                                    <option value="Beverages">Beverages</option>
+                                </select>
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="price">Price</label>
+                                <input className="form-control" name="price" id="price" value={this.state.price} type="number" step={0.01} placeholder="price" onChange={this.handleChange} />
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="image">Image File Name</label>
+                                <input className="form-control" name="image" id="image" defaultValue={"./images/" + this.state.image} type="text" placeholder="Image File Name" onChange={this.handleChange} />
+                            </div>
+                            <button className="btn btn-primary" type="submit" name="action" onClick={this.handleFormSubmit}>Add Item</button>
+                        </form>
+                    </Container>
                 </main>
             </div>
         )

@@ -3,41 +3,19 @@ const db = require("../models");
 // Defining methods for the Menu Controller
 module.exports = {
   // MenuCategory functions
-  // findAll: function(req, res) {
-    // db.MenuCategory
-    // .aggregate([{
-    //   $lookup: {
-    //     from: "MenuItem",
-    //     localField: "categoryName",
-    //     foreignField: "categoryName",
-    //     as: "categoryItems"
-    //   }
-    // }])
-    // .find({})
-    // .sort({ menuItemId: 1 })
-    // .then(dbMenuCategory => {
-    //   console.log("menu category: ", dbMenuCategory);
-    //   res.json(dbMenuCategory);
-    // })
-    // .catch(err => console.log(err))
-
-  //   db.MenuCategory
-  //   .find({})
-  //   .populate({ path: 'categoryItems', select: 'categoryName categoryName' })
-  //   .exec(function(err, menuCategories) {
-  //     if(err) {
-  //       console.log(err)
-  //     } else {
-  //       console.log("menu categories: ", menuCategories);
-  //       res.json(menuCategories)
-  //     };
-  // })
-    // .then(dbMenuCategory => {
-    //   console.log(dbMenuCategory.categoryItems);
-    //   res.json(dbMenuCategory);
-    // })
-    // .catch(err => console.log(err))
-  // },
+  findAll: function(req, res) {
+    db.MenuCategory
+    .find({})
+    .populate({ path: 'categoryItems', select: 'categoryName categoryName' })
+    .exec(function(err, menuCategories) {
+      if(err) {
+        console.log(err)
+      } else {
+        console.log("menu categories: ", menuCategories);
+        res.json(menuCategories)
+      };
+    })
+  },
   // create: function(req, res) {
   //   db.MenuCategory
   //     .create(req.body)
@@ -58,13 +36,13 @@ module.exports = {
   //     .catch(err => console.log(err));
   // },
   // MenuItem functions
-  findAll: function(req, res) {
-    db.MenuItem
-      .find(req.query)
-      .sort({ menuItemId: 1 })
-      .then(dbMenuItems => res.json(dbMenuItems))
-      .catch(err => console.log(err));
-  },
+  // findAll: function(req, res) {
+  //   db.MenuItem
+  //     .find(req.query)
+  //     .sort({ menuItemId: 1 })
+  //     .then(dbMenuItems => res.json(dbMenuItems))
+  //     .catch(err => console.log(err));
+  // },
   findById: function(req, res) {
     db.MenuItem
       .findById(req.params.id)
