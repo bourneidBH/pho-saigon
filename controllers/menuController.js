@@ -6,7 +6,11 @@ module.exports = {
   findAll: function(req, res) {
     db.MenuCategory
     .find({})
-    .populate({ path: 'categoryItems', select: 'categoryName categoryName' })
+    .populate({ 
+      path: 'categoryItems',
+      match: {'categoryName': 'categoryName'},
+      model: 'MenuItem' 
+    })
     .exec(function(err, menuCategories) {
       if(err) {
         console.log(err)

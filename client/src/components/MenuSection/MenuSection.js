@@ -27,46 +27,26 @@ class MenuSection extends React.Component {
     render() {
         return (
             <div>
-                {this.state.menu.map(MenuCategory => (
-                    <Container key={MenuCategory._id}>
+                {this.state.menu.map((MenuCategory, index) => (
+                    <Container key={index}>
                         <div className="inner">
                             <h3>{MenuCategory.categoryName}</h3>
 
-                            {/* {MenuCategory.categoryItems.length > 0 ?
-                                this.state.menu.MenuCategory.categoryItems.map(MenuCategory => (
+                            {MenuCategory.categoryItems.map((item, i) => (
                                 <MenuItem 
-                                    key={MenuCategory.categoryItems._id} 
-                                    menuItemId={MenuCategory.categoryItems.menuItemId}
-                                    itemName={MenuCategory.categoryItems.itemName}
-                                    itemNameVietnamese={MenuCategory.categoryItems.itemNameVietnamese}
-                                    description={MenuCategory.categoryItems.description}
-                                    price={MenuCategory.categoryItems.price}
-                                    image={MenuCategory.categoryItems.image}
+                                key={i}
+                                menuItemId={item.menuItemId}
+                                itemName={item.itemName}
+                                itemNameVietnamese={item.itemNameVietnamese}
+                                description={item.description}
+                                categoryName={item.categoryName}
+                                price={item.price}
+                                image={item.image} 
                                 />
-                                )) : <div></div>
-                            } */}
+                            ))}
                         </div>
-                    </Container>  
+                    </Container>
                 ))}
-
-                {/* <Container>
-                    <div className="inner">
-                        <h3>Appetizers</h3>
-                        {this.state.menu.map(menuItem => {
-                            if (menuItem.categoryName === "Appetizers") {
-                            return <MenuItem key={menuItem._id}
-                                menuItemId={menuItem.menuItemId}
-                                itemName={menuItem.itemName}
-                                itemNameVietnamese={menuItem.itemNameVietnamese}
-                                description={menuItem.description}
-                                categoryName={menuItem.categoryName}
-                                price={menuItem.price}
-                                image={menuItem.image}
-                            />
-                            }
-                        })}
-                    </div>
-                </Container> */}
             </div>
         )
     };
