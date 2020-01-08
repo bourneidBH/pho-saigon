@@ -6,6 +6,7 @@ import Menu from "./pages/Menu";
 import Home from "./pages/Home";
 import AdminAddMenuItem from "./pages/AdminAddMenuItem";
 import NoMatch from "./pages/NoMatch";
+import FindUs from "./pages/FindUs";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route exact path="/menu" component={Menu} />
           <Route exact path="/api/menu" component={Menu} />
           <Route exact path="/admin/addItem" component={AdminAddMenuItem} />
+          <Route exact path="/location" component={FindUs} />
           <Route component={NoMatch} />
         </Switch>
       </div>
