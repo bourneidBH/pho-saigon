@@ -29,6 +29,17 @@ const MenuItemSchema = new Schema({
     price: {
         type: Number
     },
+    options: [
+        {
+            optionName: {
+                type: String,
+                trim: true
+            },
+            optionPrice: {
+                type: Number
+            }
+        }
+    ],
     image: {
         type: String
     },
