@@ -1,6 +1,7 @@
-.col-md-1 {
+.align-end {
     align-self: flex-end;
 }
+
 .price {
     float: right;
     font-weight: bold;

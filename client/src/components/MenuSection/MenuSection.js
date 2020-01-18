@@ -4,6 +4,7 @@ import "./MenuSection.css";
 import Container from "../Container";
 import MenuItem from "../MenuItem";
 import ItemOptionsForm from "../ItemOptionsForm";
+// import Button from "../Button";
 
 class MenuSection extends React.Component {
     constructor(props) {
@@ -57,20 +58,27 @@ class MenuSection extends React.Component {
                                 price={item.price}
                                 image={item.image}
                                 />
-                                    {item.options.length > 0 ?
-                                    <div className="row">
-                                        <div className="col-md-12">
-                                            <p><strong>Options:</strong></p>
-                                            {item.options.map((option, index) => (
-                                                <ItemOptionsForm
-                                                key={index}
-                                                optionName={option.optionName}
-                                                optionPrice={option.optionPrice}
-                                                handleOptionChange={this.handleOptionChange}
-                                                />
-                                            ))}
-                                        </div>
-                                    </div> : null
+
+                                {/* <Button
+                                menuItemId={item.menuItemId}
+                                onClick={this.onClick}
+                                buttonText="Add to order"
+                                /> */}
+
+                                {item.options.length > 0 ?
+                                <div className="row">
+                                    <div className="col-md-12">
+                                        <p><strong>Options:</strong></p>
+                                        {item.options.map((option, index) => (
+                                            <ItemOptionsForm
+                                            key={index}
+                                            optionName={option.optionName}
+                                            optionPrice={option.optionPrice}
+                                            handleOptionChange={this.handleOptionChange}
+                                            />
+                                        ))}
+                                    </div>
+                                </div> : null
                                 }
 
                                 </div>
