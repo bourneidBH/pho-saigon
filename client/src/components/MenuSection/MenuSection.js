@@ -11,7 +11,6 @@ class MenuSection extends React.Component {
         super(props) 
 
         this.handleOptionChange = this.handleOptionChange.bind(this);
-        this.onClick = this.onClick.bind(this);
     
     };
 
@@ -43,11 +42,10 @@ class MenuSection extends React.Component {
     // callback function to get data-id from child button component
     getButtonId = childButtonId => {
         this.setState({itemId: childButtonId})
-    };
+        console.log("item id: ", childButtonId);
 
-    // onClick method to add item to order
-    onClick = () => {
-        this.state.order.push(this.state.itemId);
+        //add item to order array
+        this.state.order.push(childButtonId);
         console.log("order", this.state.order);
     };
       
@@ -69,7 +67,6 @@ class MenuSection extends React.Component {
                                     categoryName={item.categoryName}
                                     price={item.price}
                                     image={item.image}
-                                    onClick={this.onClick.bind(this)}
                                     callback={this.getButtonId}
                                     />
 
