@@ -1,5 +1,6 @@
 .align-end {
     align-self: flex-end;
+    float: right;
 }
 
 .price {

@@ -1,4 +1,14 @@
-.btn-success {
-    background-color: #0d5243 !important;
+.btn-outline-secondary {
+    border-color: #0d5243 !important;
+    color: #0d5243 !important;
+    font-weight: bold;
     float: right;
+}
+.btn-outline-secondary:hover {
+    background-color: #0d5243 !important;
+    color: white !important;
+}
+
+btn-outline-secondary:visited {
+    border: none;
 }

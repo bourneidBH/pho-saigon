@@ -11,13 +11,15 @@ class MenuSection extends React.Component {
         super(props) 
 
         this.handleOptionChange = this.handleOptionChange.bind(this);
+        this.onClick = this.onClick.bind(this);
     
     };
 
     state = {
         menu: [],
+        order: [],
+        itemId: null
     };
-
 
     // Method to get all menu items from database
     loadMenuItems = () => {
@@ -37,6 +39,17 @@ class MenuSection extends React.Component {
     handleOptionChange = event => {
         this.setState({[event.target.name]: event.target.checked});
     };
+
+    // callback function to get data-id from child button component
+    getButtonId = childButtonId => {
+        this.setState({itemId: childButtonId})
+    };
+
+    // onClick method to add item to order
+    onClick = () => {
+        this.state.order.push(this.state.itemId);
+        console.log("order", this.state.order);
+    };
       
     render() {
         return (
@@ -49,37 +62,38 @@ class MenuSection extends React.Component {
                             {MenuCategory.categoryItems.map((item, i) => (
                                 <div key={i}>
                                     <MenuItem 
-                                // key={i}
-                                menuItemId={item.menuItemId}
-                                itemName={item.itemName}
-                                itemNameVietnamese={item.itemNameVietnamese}
-                                description={item.description}
-                                categoryName={item.categoryName}
-                                price={item.price}
-                                image={item.image}
-                                />
+                                    menuItemId={item.menuItemId}
+                                    itemName={item.itemName}
+                                    itemNameVietnamese={item.itemNameVietnamese}
+                                    description={item.description}
+                                    categoryName={item.categoryName}
+                                    price={item.price}
+                                    image={item.image}
+                                    onClick={this.onClick.bind(this)}
+                                    callback={this.getButtonId}
+                                    />
 
-                                {/* <Button
-                                menuItemId={item.menuItemId}
-                                onClick={this.onClick}
-                                buttonText="Add to order"
-                                /> */}
+                                    {/* <Button
+                                    menuItemId={item.menuItemId}
+                                    onClick={this.onClick}
+                                    buttonText="Add to order"
+                                    /> */}
 
-                                {item.options.length > 0 ?
-                                <div className="row">
-                                    <div className="col-md-12">
-                                        <p><strong>Options:</strong></p>
-                                        {item.options.map((option, index) => (
-                                            <ItemOptionsForm
-                                            key={index}
-                                            optionName={option.optionName}
-                                            optionPrice={option.optionPrice}
-                                            handleOptionChange={this.handleOptionChange}
-                                            />
-                                        ))}
-                                    </div>
-                                </div> : null
-                                }
+                                    {item.options.length > 0 ?
+                                    <div className="row">
+                                        <div className="col-md-12">
+                                            <p><strong>Options:</strong></p>
+                                            {item.options.map((option, index) => (
+                                                <ItemOptionsForm
+                                                key={index}
+                                                optionName={option.optionName}
+                                                optionPrice={option.optionPrice}
+                                                handleOptionChange={this.handleOptionChange}
+                                                />
+                                            ))}
+                                        </div>
+                                    </div> : null
+                                    }
 
                                 </div>
                             ))}
