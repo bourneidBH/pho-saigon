@@ -46,8 +46,9 @@ class MenuSection extends React.Component {
                             <h3>{MenuCategory.categoryName}</h3>
 
                             {MenuCategory.categoryItems.map((item, i) => (
-                                <MenuItem 
-                                key={i}
+                                <div key={i}>
+                                    <MenuItem 
+                                // key={i}
                                 menuItemId={item.menuItemId}
                                 itemName={item.itemName}
                                 itemNameVietnamese={item.itemNameVietnamese}
@@ -55,8 +56,8 @@ class MenuSection extends React.Component {
                                 categoryName={item.categoryName}
                                 price={item.price}
                                 image={item.image}
-
-                                { ...item.options.length > 0 ?
+                                />
+                                    {item.options.length > 0 ?
                                     <div className="row">
                                         <div className="col-md-12">
                                             <p><strong>Options:</strong></p>
@@ -72,8 +73,7 @@ class MenuSection extends React.Component {
                                     </div> : null
                                 }
 
-                                />
-    
+                                </div>
                             ))}
                         </div>
                     </Container>
