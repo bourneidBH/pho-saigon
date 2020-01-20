@@ -3,7 +3,7 @@ import "./MenuItem.css";
 import Button from "../Button";
 
 function MenuItem(props) {
-    const { menuItemId, itemName, itemNameVietnamese, description, price, image, callback } = props;
+    const { menuItemId, itemName, itemNameVietnamese, description, price, image, callback, optionName } = props;
     return (
         <div className="row">
             <div className="col-md-2">
@@ -21,6 +21,8 @@ function MenuItem(props) {
                 <br /><br />
                 <Button
                 menuItemId={menuItemId}
+                itemName={itemName}
+                optionName={optionName}
                 buttonText="Add to order"
                 callback={callback}
                 />

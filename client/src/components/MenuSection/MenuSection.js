@@ -17,7 +17,10 @@ class MenuSection extends React.Component {
     state = {
         menu: [],
         order: [],
-        itemId: null
+        itemId: null,
+        itemName: null,
+        options: []
+
     };
 
     // Method to get all menu items from database
@@ -37,15 +40,30 @@ class MenuSection extends React.Component {
 
     handleOptionChange = event => {
         this.setState({[event.target.name]: event.target.checked});
+
+        if (event.target.checked && this.state.order) {
+            this.state.options.push(event.target.value);
+            console.log("chosen options: ", this.state.options);
+        }
     };
 
-    // callback function to get data-id from child button component
-    getButtonId = childButtonId => {
-        this.setState({itemId: childButtonId})
-        console.log("item id: ", childButtonId);
+    // callback function to get info from child button component
+    getButtonInfo = (menuItemId, itemName) => {
+
+        this.setState({
+            itemId: menuItemId,
+            itemName: itemName,
+            options: this.state.options
+        });
+
+        console.log("item id: ", menuItemId);
 
         //add item to order array
-        this.state.order.push(childButtonId);
+        this.state.order.push({
+            itemId: menuItemId,
+            itemName: itemName,
+            options: this.state.options
+        });
         console.log("order", this.state.order);
     };
       
@@ -67,14 +85,8 @@ class MenuSection extends React.Component {
                                     categoryName={item.categoryName}
                                     price={item.price}
                                     image={item.image}
-                                    callback={this.getButtonId}
+                                    callback={this.getButtonInfo}
                                     />
-
-                                    {/* <Button
-                                    menuItemId={item.menuItemId}
-                                    onClick={this.onClick}
-                                    buttonText="Add to order"
-                                    /> */}
 
                                     {item.options.length > 0 ?
                                     <div className="row">

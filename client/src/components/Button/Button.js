@@ -5,11 +5,12 @@ function Button(props) {
     const {
         buttonText,
         menuItemId,
-        callback
+        callback,
+        itemName,
         } = props
     
     return (
-            <button className="btn btn-outline-secondary btn-sm" onClick={() => callback(menuItemId)}>{buttonText}</button>
+            <button className="btn btn-outline-secondary btn-sm" onClick={() => callback(menuItemId, itemName)}>{buttonText}</button>
         )
     
 };
