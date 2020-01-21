@@ -4,7 +4,6 @@ import "./MenuSection.css";
 import Container from "../Container";
 import MenuItem from "../MenuItem";
 import ItemOptionsForm from "../ItemOptionsForm";
-// import Button from "../Button";
 
 class MenuSection extends React.Component {
     constructor(props) {
@@ -19,8 +18,6 @@ class MenuSection extends React.Component {
         order: [],
         itemId: null,
         itemName: null,
-        options: []
-
     };
 
     // Method to get all menu items from database
@@ -36,14 +33,19 @@ class MenuSection extends React.Component {
     // Lifecycle method runs loadMenuItems when component mounts
     componentDidMount() {
         this.loadMenuItems()
+        // this.props.dispatch(fetchMenu())
     };
 
     handleOptionChange = event => {
         this.setState({[event.target.name]: event.target.checked});
+        console.log("event target id: ", event.target.id);
 
-        if (event.target.checked && this.state.order) {
-            this.state.options.push(event.target.value);
-            console.log("chosen options: ", this.state.options);
+        for (let i = 0; i < this.state.order.length; i++) {
+            if (event.target.id === this.state.order[i].itemId) {
+            
+                this.state.order[i].options.push(event.target.value);
+                console.log("chosen options: ", this.state.options);
+            }
         }
     };
 
@@ -53,7 +55,6 @@ class MenuSection extends React.Component {
         this.setState({
             itemId: menuItemId,
             itemName: itemName,
-            options: this.state.options
         });
 
         console.log("item id: ", menuItemId);
@@ -62,12 +63,12 @@ class MenuSection extends React.Component {
         this.state.order.push({
             itemId: menuItemId,
             itemName: itemName,
-            options: this.state.options
+            options: []
         });
         console.log("order", this.state.order);
     };
       
-    render() {
+    render() {        
         return (
             <div>
                 {this.state.menu.map(MenuCategory => (
@@ -95,6 +96,7 @@ class MenuSection extends React.Component {
                                             {item.options.map((option, index) => (
                                                 <ItemOptionsForm
                                                 key={index}
+                                                menuItemId={item.menuItemId}
                                                 optionName={option.optionName}
                                                 optionPrice={option.optionPrice}
                                                 handleOptionChange={this.handleOptionChange}
@@ -115,4 +117,3 @@ class MenuSection extends React.Component {
 };
 
 export default MenuSection;
-
