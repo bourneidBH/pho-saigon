@@ -44,7 +44,7 @@ class MenuSection extends React.Component {
             if (event.target.id === this.state.order[i].itemId) {
             
                 this.state.order[i].options.push(event.target.value);
-                console.log("chosen options: ", this.state.options);
+                console.log("chosen options: ", this.state.order[i].options);
             }
         }
     };
