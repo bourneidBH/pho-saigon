@@ -10,3 +10,12 @@
     text-align: center;
     text-shadow: 3px 3px 5px #000;
 }
+.jumbotron {
+    padding: 3rem 2rem;
+}
+
+@media screen and (max-width: 768px) {
+    .jumbotron {
+        padding: 2rem 2rem;
+    }
+}

@@ -7,8 +7,15 @@ function Hours() {
         <Container>
             <h2 className="centered">Hours</h2>
             <p className="centered">
-                Open 7 days a week 10am - 10pm.
+                Open 7 days a week.
             </p>
+            <p className="centered">
+                Sunday - Thursday 10am - 9pm.
+            </p>
+            <p className="centered">
+                Friday and Saturday 10am - 10pm.
+            </p>
+
             <h2 className="centered">Location</h2>
             <p className="centered">
                 10534 W Greenfield Ave, West Allis, WI 53124

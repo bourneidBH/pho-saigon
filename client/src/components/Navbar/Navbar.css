@@ -35,7 +35,7 @@
     }
 }
 
-@media (max-width: 991px) {
+@media screen and (max-width: 991px) {
     .navbar-nav .nav-link {
         background-color: #0d5243 !important;
         color: #fff !important;
@@ -51,8 +51,7 @@
     }
     .navbar-toggler {
         position: fixed;
-        top: 60px;
+        top: 6%;
         right: 10px;
     }
 }
-

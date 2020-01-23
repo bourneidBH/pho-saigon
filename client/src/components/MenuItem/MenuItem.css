@@ -13,3 +13,16 @@
 img {
     max-width: 100%;
 }
+.img-box {
+    float: left;
+    padding-right: 30px;
+    width: 25%;
+}
+
+@media screen and (max-width: 640px) {
+    .img-box {
+        float: none;
+        padding-right: 0;
+        width: 100%;
+    }
+}
