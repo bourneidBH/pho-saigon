@@ -10,7 +10,6 @@ class MenuSection extends React.Component {
         super(props) 
 
         this.handleOptionChange = this.handleOptionChange.bind(this);
-    
     };
 
     state = {
@@ -33,15 +32,14 @@ class MenuSection extends React.Component {
     // Lifecycle method runs loadMenuItems when component mounts
     componentDidMount() {
         this.loadMenuItems()
-        // this.props.dispatch(fetchMenu())
     };
 
     handleOptionChange = event => {
         this.setState({[event.target.name]: event.target.checked});
-        console.log("event target id: ", event.target.id);
+        console.log("event target name: ", event.target.name);
 
         for (let i = 0; i < this.state.order.length; i++) {
-            if (event.target.id === this.state.order[i].itemId) {
+            if (event.target.name === this.state.order[i].itemId) {
             
                 this.state.order[i].options.push(event.target.value);
                 console.log("chosen options: ", this.state.order[i].options);
@@ -97,6 +95,7 @@ class MenuSection extends React.Component {
                                                 <ItemOptionsForm
                                                 key={index}
                                                 menuItemId={item.menuItemId}
+                                                optionType={option.optionType}
                                                 optionName={option.optionName}
                                                 optionPrice={option.optionPrice}
                                                 handleOptionChange={this.handleOptionChange}

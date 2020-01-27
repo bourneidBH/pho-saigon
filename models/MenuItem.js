@@ -31,6 +31,10 @@ const MenuItemSchema = new Schema({
     },
     options: [
         {
+            optionType: {
+                type: String,
+                trim: true
+            },
             optionName: {
                 type: String,
                 trim: true
