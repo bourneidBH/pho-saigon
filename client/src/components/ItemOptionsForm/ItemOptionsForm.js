@@ -7,7 +7,8 @@ function ItemOptionsForm(props) {
         handleOptionChange,
         optionType,
         optionName,
-        optionPrice
+        optionPrice,
+        // checked
     } = props;
 
     return (

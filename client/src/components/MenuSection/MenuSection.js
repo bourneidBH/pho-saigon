@@ -9,14 +9,15 @@ class MenuSection extends React.Component {
     constructor(props) {
         super(props) 
 
-        this.handleOptionChange = this.handleOptionChange.bind(this);
-    };
+        this.state = {
+            menu: [],
+            order: [],
+            itemId: null,
+            itemName: null,
+            checked: false,
+        };
 
-    state = {
-        menu: [],
-        order: [],
-        itemId: null,
-        itemName: null,
+        this.handleOptionChange = this.handleOptionChange.bind(this);
     };
 
     // Method to get all menu items from database
@@ -35,16 +36,25 @@ class MenuSection extends React.Component {
     };
 
     handleOptionChange = event => {
-        this.setState({[event.target.name]: event.target.checked});
-        console.log("event target name: ", event.target.name);
-
-        for (let i = 0; i < this.state.order.length; i++) {
-            if (event.target.name === this.state.order[i].itemId) {
-            
-                this.state.order[i].options.push(event.target.value);
-                console.log("chosen options: ", this.state.order[i].options);
+        this.setState(prevState => (
+            {checked: !prevState.checked}
+            ), () => {
+                console.log("checked: ", this.state.checked);
             }
-        }
+        );
+
+        if (this.state.checked) {
+            this.setState({[event.target.name]: event.target.checked});
+            console.log("option checked: ", event.target.value);
+
+            for (let i = 0; i < this.state.order.length; i++) {
+                if (event.target.name === this.state.order[i].itemId) {
+                
+                    this.state.order[i].options.push(event.target.value);
+                    console.log("chosen options: ", this.state.order[i].options);
+                };
+            };
+        };
     };
 
     // callback function to get info from child button component
@@ -98,6 +108,7 @@ class MenuSection extends React.Component {
                                                 optionType={option.optionType}
                                                 optionName={option.optionName}
                                                 optionPrice={option.optionPrice}
+                                                checked={this.checked}
                                                 handleOptionChange={this.handleOptionChange}
                                                 />
                                             ))}
