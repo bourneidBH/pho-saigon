@@ -29,6 +29,9 @@ code {
   margin: auto;
   text-align: center;
 }
+.container-fluid {
+  padding: 0;
+}
 
 @media (max-width: 991px) {
   .bg-main {

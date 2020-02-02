@@ -3,6 +3,8 @@
 }
 .navbar-nav {
     margin: auto;
+    justify-content: space-between;
+    padding-bottom: 35px;
 }
 .navbar-nav .nav-link {
     color: #000 !important;
@@ -22,6 +24,9 @@
 @media (max-width: 992px) {
     .navbar {
         background-color: #fff;
+    }
+    .navbar-nav {
+        padding-bottom: 5px;
     }
     .navbar-nav .nav-link {
         padding-left: .5rem !important;

@@ -14,10 +14,11 @@ class MenuSection extends React.Component {
             order: [],
             itemId: null,
             itemName: null,
-            checked: false,
+            selectedOptions: []
         };
 
         this.handleOptionChange = this.handleOptionChange.bind(this);
+        this.addToOrder = this.addToOrder.bind(this);
     };
 
     // Method to get all menu items from database
@@ -35,44 +36,99 @@ class MenuSection extends React.Component {
         this.loadMenuItems()
     };
 
-    handleOptionChange = event => {
-        this.setState(prevState => (
-            {checked: !prevState.checked}
-            ), () => {
-                console.log("checked: ", this.state.checked);
-            }
-        );
+    //use callback to get categoryName, menuItemId, optionName from child form component
+    handleOptionChange = (categoryName, menuItemId, optionName) => {
 
-        if (this.state.checked) {
-            this.setState({[event.target.name]: event.target.checked});
-            console.log("option checked: ", event.target.value);
+        // locate which option in which item is changed
+        const cat = this.state.menu.find(cat => cat.categoryName === categoryName);
+        const menuItem = cat.categoryItems.find(item => item.menuItemId === menuItemId);
+        const option = menuItem.options.find(option => option.optionName === optionName)
+        
+        // toggle checked boolean value
+        option.checked = !option.checked
+        console.log(option.optionName + " checked: " + option.checked);
 
-            for (let i = 0; i < this.state.order.length; i++) {
-                if (event.target.name === this.state.order[i].itemId) {
-                
-                    this.state.order[i].options.push(event.target.value);
-                    console.log("chosen options: ", this.state.order[i].options);
+        // find index of the checked option in options array 
+        // and splice in the new checked value
+        const optionIndex = menuItem.options.indexOf(option);
+        menuItem.options.splice(optionIndex, 1, option);
+
+        if (option.checked === true) {
+                // spread prevState to update nested property with checked value
+                this.setState(prevState => ({
+                    ...prevState,
+                    selectedOptions: [
+                        ...prevState.selectedOptions,
+                        menuItem
+                    ]
+                }), () => console.log("items with selected options: ", this.state.selectedOptions));
+            } else {
+                const itemIndex = this.state.selectedOptions.indexOf(menuItem);
+                console.log(itemIndex)
+                if (itemIndex > -1) {
+                    this.setState(prevState => ({
+                        ...prevState,
+                        selectedOptions: [
+                            ...prevState.selectedOptions.splice(itemIndex, 1)
+                        ]
+                    }), () => console.log("items with selected options: ", this.state.selectedOptions));
                 };
             };
-        };
+
+        // this.setState(prevState => (
+        //     {checked: !prevState.checked}
+        //     ), () => {
+        //         console.log("checked: ", this.state.checked);
+        //     }
+        // );
+
+        // if (this.state.checked) {
+        //     this.setState({[event.target.name]: event.target.checked});
+        //     console.log("option checked: ", event.target.value);
+
+        //     for (let i = 0; i < this.state.order.length; i++) {
+        //         if (event.target.name === this.state.order[i].itemId) {
+                
+        //             this.state.order[i].options.push(event.target.value);
+        //             console.log("chosen options: ", this.state.order[i].options);
+        //         };
+        //     };
+        // };
     };
 
-    // callback function to get info from child button component
-    getButtonInfo = (menuItemId, itemName) => {
+    // use callback function to get info from child button component
+    addToOrder = (menuItemId, itemName, categoryName) => {
 
-        this.setState({
-            itemId: menuItemId,
-            itemName: itemName,
-        });
+        // this.setState({
+        //     itemId: menuItemId,
+        //     itemName: itemName,
+        // });
 
-        console.log("item id: ", menuItemId);
+        // locate which option in which item is changed
+        const cat = this.state.menu.find(cat => cat.categoryName === categoryName);
+        console.log("cat ", cat)
+        // const menuItem = cat.categoryItems.find(item => item.menuItemId === menuItemId);
+        // const options = menuItem.options.filter(option => option.checked);
+
+        // console.log("item to add: ", menuItem);
+
+        // this.setState(prevState => ({
+        //     ...prevState,
+        //     order: [
+        //         ...prevState.order,
+        //         { 
+        //             menuItem: menuItem,
+        //             options: options
+        //         }
+        //     ]
+        // }))
 
         //add item to order array
-        this.state.order.push({
-            itemId: menuItemId,
-            itemName: itemName,
-            options: []
-        });
+        // this.state.order.push({
+        //     itemId: menuItemId,
+        //     itemName: itemName,
+        //     options: []
+        // });
         console.log("order", this.state.order);
     };
       
@@ -94,7 +150,7 @@ class MenuSection extends React.Component {
                                     categoryName={item.categoryName}
                                     price={item.price}
                                     image={item.image}
-                                    callback={this.getButtonInfo}
+                                    callback={this.addToOrder}
                                     />
 
                                     {item.options.length > 0 ?
@@ -105,11 +161,12 @@ class MenuSection extends React.Component {
                                                 <ItemOptionsForm
                                                 key={index}
                                                 menuItemId={item.menuItemId}
+                                                categoryName={item.categoryName}
                                                 optionType={option.optionType}
                                                 optionName={option.optionName}
                                                 optionPrice={option.optionPrice}
-                                                checked={this.checked}
-                                                handleOptionChange={this.handleOptionChange}
+                                                checked={option.checked}
+                                                callback={this.handleOptionChange}
                                                 />
                                             ))}
                                         </div>

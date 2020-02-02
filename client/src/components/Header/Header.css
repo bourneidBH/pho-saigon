@@ -1,5 +1,8 @@
+.bg-white {
+    height: auto;
+}
 .top-shift {
-    margin-top: -6rem;
+    margin-top: -5rem;
     background-color: #fff;
 }
 header {
@@ -9,11 +12,6 @@ header {
     z-index: 1000;
 }
 @media (max-width: 990px) {
-    .top-shift {
-        margin-top: -3.5rem;
-    }
-}
-@media (max-width: 600px) {
     .top-shift {
         margin-top: 0;
     }

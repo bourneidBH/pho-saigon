@@ -1,25 +1,28 @@
 import React from "react";
 import "./ItemOptionsForm.css";
 
-function ItemOptionsForm(props) {
-    const {
-        menuItemId,
-        handleOptionChange,
-        optionType,
-        optionName,
-        optionPrice,
-        // checked
-    } = props;
+class ItemOptionsForm extends React.Component {
+    constructor(props) {
+        super(props)
 
-    return (
-        <div className="form-check form-check-inline">
-            {optionType === "radio" ? 
-                <input className="form-check-input" type="radio" name={menuItemId} id={optionName} value={optionName} onChange={handleOptionChange} /> : 
-                <input className="form-check-input" type="checkbox" name={menuItemId} id={optionName} value={optionName} onChange={handleOptionChange} />
-            }
-            <label className="form-check-label option" htmlFor={optionName}>{optionPrice ? optionName + " $" + optionPrice : optionName}</label>
-        </div>
-    )
+        this.handleChange = this.handleChange.bind(this);
+    }
+    
+    handleChange() {
+        this.props.callback(this.props.categoryName, this.props.menuItemId, this.props.optionName, this.props.optionPrice)
+    }
+
+    render() {
+        return (
+            <div className="form-check form-check-inline">
+                {this.props.optionType === "radio" ? 
+                    <input className="form-check-input" type="radio" name={this.props.menuItemId} id={this.props.optionName} value={this.props.optionName} onClick={this.handleChange} /> : 
+                    <input className="form-check-input" type="checkbox" name={this.props.menuItemId} id={this.props.optionName} value={this.props.optionName} onClick={this.handleChange} />
+                }
+                <label className="form-check-label option" htmlFor={this.props.optionName}>{this.props.optionPrice ? this.props.optionName + " $" + this.props.optionPrice : this.props.optionName}</label>
+            </div>
+        )
+    }
 }
 
 export default ItemOptionsForm;

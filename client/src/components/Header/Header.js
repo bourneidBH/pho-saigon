@@ -2,10 +2,9 @@ import React from "react";
 import "./Header.css";
 import Navbar from "../Navbar";
 import Logo from "../Logo";
-import Jumbotron from "../Jumbotron";
+// import Jumbotron from "../Jumbotron";
 
-function Header(props) {
-    const { h1, lead } = props;
+function Header() {
 
     return (
         <header>
@@ -15,10 +14,6 @@ function Header(props) {
                     <Navbar />
                 </div>
             </div>
-            <Jumbotron 
-                h1={h1}
-                lead={lead}
-            />
         </header>
     )
 };

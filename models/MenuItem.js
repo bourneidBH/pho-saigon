@@ -41,6 +41,10 @@ const MenuItemSchema = new Schema({
             },
             optionPrice: {
                 type: Number
+            },
+            checked: {
+                type: Boolean,
+                default: false
             }
         }
     ],

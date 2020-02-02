@@ -1,16 +1,21 @@
 import React from "react";
 import Header from "../components/Header";
+import Container from "../components/Container";
+import Jumbotron from "../components/Jumbotron";
 import Map from "../components/Map";
 import Hours from "../components/Hours";
 
 function FindUs() {
     return (
         <div>
-            <Header
-                h1="Find Us"
-                lead="Authentic Vietnamese and Chinese cuisine in West Allis" 
-            />
+            <Header />
             <main>
+                <Container fluid>
+                    <Jumbotron
+                        h1="Find Us"
+                        lead="Authentic Vietnamese and Chinese cuisine in West Allis"
+                    />
+                </Container>
                 <Hours />
                 <Map />
             </main>
