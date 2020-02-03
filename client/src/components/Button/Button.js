@@ -9,7 +9,12 @@ class Button extends React.Component {
     };
 
     handleClick() {
-        this.props.callback(this.props.categoryName, this.props.menuItemId, this.props.itemName)
+        this.props.callback({
+            categorName: this.props.categoryName, 
+            menuItemId: this.props.menuItemId, 
+            itemName: this.props.itemName,
+            options: []
+        })
     };
 
     render() {

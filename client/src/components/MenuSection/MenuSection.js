@@ -97,16 +97,30 @@ class MenuSection extends React.Component {
     };
 
     // use callback function to get info from child button component
-    addToOrder = (menuItemId, itemName, categoryName) => {
+    addToOrder = (selectedItem) => {
+        console.log("selected item ", selectedItem)
+        
+        for (let i = 0; i < this.state.selectedOptions.length; i++) {
+            if (selectedItem.menuItemId === this.state.selectedOptions[i].menuItemId) {
+                
+                const options = this.state.selectedOptions[i].options
+                .filter(option => option.checked);
 
+                selectedItem.options.push(options);
+            };
+        };
+
+        this.setState({order: this.state.order.concat(selectedItem)}, 
+        () =>  console.log("order", this.state.order));
+        
         // this.setState({
         //     itemId: menuItemId,
         //     itemName: itemName,
         // });
 
         // locate which option in which item is changed
-        const cat = this.state.menu.find(cat => cat.categoryName === categoryName);
-        console.log("cat ", cat)
+        // const cat = this.state.menu.find(cat => cat.categoryName === categoryName);
+        // console.log("cat ", cat)
         // const menuItem = cat.categoryItems.find(item => item.menuItemId === menuItemId);
         // const options = menuItem.options.filter(option => option.checked);
 
@@ -129,7 +143,6 @@ class MenuSection extends React.Component {
         //     itemName: itemName,
         //     options: []
         // });
-        console.log("order", this.state.order);
     };
       
     render() {        
