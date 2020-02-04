@@ -54,26 +54,27 @@ class MenuSection extends React.Component {
         menuItem.options.splice(optionIndex, 1, option);
 
         if (option.checked === true) {
-                // spread prevState to update nested property with checked value
-                this.setState(prevState => ({
-                    ...prevState,
-                    selectedOptions: [
-                        ...prevState.selectedOptions,
-                        menuItem
-                    ]
-                }), () => console.log("items with selected options: ", this.state.selectedOptions));
-            } else {
-                const itemIndex = this.state.selectedOptions.indexOf(menuItem);
-                console.log(itemIndex)
-                if (itemIndex > -1) {
-                    this.setState(prevState => ({
-                        ...prevState,
-                        selectedOptions: [
-                            ...prevState.selectedOptions.splice(itemIndex, 1)
-                        ]
-                    }), () => console.log("items with selected options: ", this.state.selectedOptions));
-                };
-            };
+            // spread prevState to update nested property with checked value
+            this.setState(prevState => ({
+                ...prevState,
+                selectedOptions: [
+                    ...prevState.selectedOptions,
+                    menuItem
+                ]
+            }), () => console.log("items with selected options: ", this.state.selectedOptions));
+        };
+            // } else {
+            //     const itemIndex = this.state.selectedOptions.indexOf(menuItem);
+            //     console.log(itemIndex)
+            //     if (itemIndex > -1) {
+            //         this.setState(prevState => ({
+            //             ...prevState,
+            //             selectedOptions: [
+            //                 ...prevState.selectedOptions.splice(itemIndex, 1)
+            //             ]
+            //         }), () => console.log("items with selected options: ", this.state.selectedOptions));
+            //     };
+            // };
 
         // this.setState(prevState => (
         //     {checked: !prevState.checked}

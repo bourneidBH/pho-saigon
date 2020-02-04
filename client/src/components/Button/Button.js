@@ -10,9 +10,10 @@ class Button extends React.Component {
 
     handleClick() {
         this.props.callback({
-            categorName: this.props.categoryName, 
+            categoryName: this.props.categoryName, 
             menuItemId: this.props.menuItemId, 
             itemName: this.props.itemName,
+            price: this.props.price,
             options: []
         })
     };
