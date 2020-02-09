@@ -42,19 +42,34 @@ class MenuSection extends React.Component {
         // locate which option in which item is changed
         const cat = this.state.menu.find(cat => cat.categoryName === categoryName);
         const menuItem = cat.categoryItems.find(item => item.menuItemId === menuItemId);
-        const option = menuItem.options.find(option => option.optionName === optionName)
-        
-        // toggle checked boolean value
-        option.checked = !option.checked
-        console.log(option.optionName + " checked: " + option.checked);
-
+        const option = menuItem.options.find(option => option.optionName === optionName);
+                
         // find index of the checked option in options array 
         // and splice in the new checked value
         const optionIndex = menuItem.options.indexOf(option);
+        
+        // toggle checked boolean value
+        // for radio buttons loop through options & set all except current selected to false
+        if (option.optionType === "radio") {
+            for (let i = 0; i < menuItem.options.length; i++) {
+                if (i !== optionIndex) {
+                    menuItem.options[i].checked = false;        
+                } else {
+                    option.checked = !option.checked;
+                    console.log(option.optionName + " checked: " + option.checked);
+                };
+            };  
+        } else {
+            // for checkboxes
+            option.checked = !option.checked;
+            console.log(option.optionName + " checked: " + option.checked);
+        }
+
         menuItem.options.splice(optionIndex, 1, option);
 
-        if (option.checked === true) {
-            // spread prevState to update nested property with checked value
+        if (option.checked && this.state.selectedOptions.includes(menuItem) === false) {
+            // if menuItem not already included in selectedOptions array
+            // spread prevState to add menuItem with new checked value
             this.setState(prevState => ({
                 ...prevState,
                 selectedOptions: [
@@ -62,45 +77,24 @@ class MenuSection extends React.Component {
                     menuItem
                 ]
             }), () => console.log("items with selected options: ", this.state.selectedOptions));
+        } 
+        else if (option.checked && this.state.selectedOptions.includes(menuItem) === true) {
+            // const itemIndex = this.state.selectedOptions.indexOf(menuItem);
+            
+            // if menuItem is already included in selectedOptions array replace it with updated version
+            this.setState(
+                this.state.selectedOptions
+                .filter(arr => arr !== menuItem)
+                .concat(menuItem), 
+            () => console.log("items with selected options: ", this.state.selectedOptions));
         };
-            // } else {
-            //     const itemIndex = this.state.selectedOptions.indexOf(menuItem);
-            //     console.log(itemIndex)
-            //     if (itemIndex > -1) {
-            //         this.setState(prevState => ({
-            //             ...prevState,
-            //             selectedOptions: [
-            //                 ...prevState.selectedOptions.splice(itemIndex, 1)
-            //             ]
-            //         }), () => console.log("items with selected options: ", this.state.selectedOptions));
-            //     };
-            // };
-
-        // this.setState(prevState => (
-        //     {checked: !prevState.checked}
-        //     ), () => {
-        //         console.log("checked: ", this.state.checked);
-        //     }
-        // );
-
-        // if (this.state.checked) {
-        //     this.setState({[event.target.name]: event.target.checked});
-        //     console.log("option checked: ", event.target.value);
-
-        //     for (let i = 0; i < this.state.order.length; i++) {
-        //         if (event.target.name === this.state.order[i].itemId) {
-                
-        //             this.state.order[i].options.push(event.target.value);
-        //             console.log("chosen options: ", this.state.order[i].options);
-        //         };
-        //     };
-        // };
     };
 
     // use callback function to get info from child button component
     addToOrder = (selectedItem) => {
         console.log("selected item ", selectedItem)
         
+        // add any selected options from selectedOptions array to selectedItem.options
         for (let i = 0; i < this.state.selectedOptions.length; i++) {
             if (selectedItem.menuItemId === this.state.selectedOptions[i].menuItemId) {
                 
@@ -111,39 +105,24 @@ class MenuSection extends React.Component {
             };
         };
 
+        // update order state with new selectedItem
         this.setState({order: this.state.order.concat(selectedItem)}, 
-        () =>  console.log("order", this.state.order));
-        
-        // this.setState({
-        //     itemId: menuItemId,
-        //     itemName: itemName,
-        // });
+        () => {
+            console.log("order", this.state.order);
 
-        // locate which option in which item is changed
-        // const cat = this.state.menu.find(cat => cat.categoryName === categoryName);
-        // console.log("cat ", cat)
-        // const menuItem = cat.categoryItems.find(item => item.menuItemId === menuItemId);
-        // const options = menuItem.options.filter(option => option.checked);
+            /* remove selected item from selectedOptions array 
+            in case another of that same menu item is added to order
+            with different options from the first one.  */
 
-        // console.log("item to add: ", menuItem);
+            for (let i = 0; i < this.state.selectedOptions.length; i++) {
+                if (this.state.selectedOptions[i].menuItemId === selectedItem.menuItemId) {
 
-        // this.setState(prevState => ({
-        //     ...prevState,
-        //     order: [
-        //         ...prevState.order,
-        //         { 
-        //             menuItem: menuItem,
-        //             options: options
-        //         }
-        //     ]
-        // }))
-
-        //add item to order array
-        // this.state.order.push({
-        //     itemId: menuItemId,
-        //     itemName: itemName,
-        //     options: []
-        // });
+                    this.setState({
+                        selectedOptions: this.state.selectedOptions.filter(arr => arr !== this.state.selectedOptions[i])
+                    }, () => console.log("items with selected options: ", this.state.selectedOptions))
+                };
+            };
+        });
     };
       
     render() {        
