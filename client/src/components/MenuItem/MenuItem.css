@@ -2,11 +2,6 @@
     align-self: flex-end;
     float: right;
 }
-
-.price {
-    float: right;
-    font-weight: bold;
-}
 .row {
     margin-bottom: 20px;
 }

@@ -128,6 +128,30 @@ class MenuSection extends React.Component {
     render() {        
         return (
             <div>
+                <p className="centered margin-bottom">Dine in or carry out. For carry-out call <a href="tel:4148289698">414-828-9698</a> or use the online order form below. Pay at the restaurant when you pick up your order.</p>
+                <p className="centered">
+                    <button className="btn btn-secondary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        View your order
+                    </button>
+                </p>
+                <div className="collapse" id="collapseExample">
+                    <div className="card card-body">
+                        <ul>
+                            {this.state.order.map((item, index) => (
+                                <li key={index}>
+                                    <h6>{item.menuItemId}. {item.itemName} <span className="price">{item.price}</span></h6>
+                                    <ul>
+                                        {item.options.map((option) => (
+                                            option.map((optionIndex, i) => (
+                                                <li key={i}>{optionIndex.optionName} <span className="price">{optionIndex.optionPrice}</span></li>
+                                            ))
+                                        ))}
+                                    </ul>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                </div>
                 {this.state.menu.map(MenuCategory => (
                     <Container key={MenuCategory._id}>
                         <div className="inner">

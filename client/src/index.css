@@ -33,6 +33,14 @@ code {
   padding: 0;
 }
 
+p a {
+  color: #0d5243;
+}
+.price {
+  float: right;
+  font-weight: bold;
+}
+
 @media (max-width: 991px) {
   .bg-main {
     min-width: 100%;
