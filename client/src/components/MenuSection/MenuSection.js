@@ -12,13 +12,14 @@ class MenuSection extends React.Component {
         this.state = {
             menu: [],
             order: [],
-            itemId: null,
-            itemName: null,
             selectedOptions: []
         };
 
         this.handleOptionChange = this.handleOptionChange.bind(this);
         this.addToOrder = this.addToOrder.bind(this);
+        this.calculateSubtotal = this.calculateSubtotal.bind(this);
+        this.calculateTax = this.calculateTax.bind(this);
+        this.calculateTotal = this.calculateTotal.bind(this);
     };
 
     // Method to get all menu items from database
@@ -124,6 +125,50 @@ class MenuSection extends React.Component {
             };
         });
     };
+
+    calculateSubtotal = () => {
+        let orderPrices = [];
+
+        this.state.order.forEach(function(item) {
+            if (item.options.length > 0) {
+                let optionPrices = item.options.map(option => (
+                    option.map(optionIndex => optionIndex.optionPrice)
+                ))
+                .reduce(function(total, num) {
+                    return total + num;
+                });
+                let optionsTotal = optionPrices.reduce(function(total, num) {
+                    return total + num;
+                });
+                let itemSubtotal = optionsTotal + item.price;
+                orderPrices.push(itemSubtotal);
+
+            } else {
+                let itemSubtotal = item.price;
+                orderPrices.push(itemSubtotal);
+            };
+
+            const orderSubtotal = orderPrices.reduce(function(total, num) {
+                return total + num;
+            }).toFixed(2);
+            console.log("order subtotal: ", orderSubtotal);
+            return orderSubtotal;
+        });
+    };
+
+    calculateTax = () => {
+        const subtotal = this.calculateSubtotal();
+        console.log("subtotal: ", subtotal);
+        const tax = (subtotal * .056).toFixed(2);
+        console.log("tax: ", tax);
+        return tax; 
+    };
+
+    calculateTotal = () => {
+        const total = this.calculateSubtotal() + this.calculateTax();
+        console.log("total: ", total);
+        return total;
+    }
       
     render() {        
         return (
@@ -139,17 +184,21 @@ class MenuSection extends React.Component {
                         <ul>
                             {this.state.order.map((item, index) => (
                                 <li key={index}>
-                                    <h6>{item.menuItemId}. {item.itemName} <span className="price">{item.price}</span></h6>
+                                    <h6>{item.menuItemId}. {item.itemName} {item.price ? <span className="price">${item.price}</span> : <span className="price">Market price</span>}</h6>
                                     <ul>
                                         {item.options.map((option) => (
                                             option.map((optionIndex, i) => (
-                                                <li key={i}>{optionIndex.optionName} <span className="price">{optionIndex.optionPrice}</span></li>
+                                                <li key={i}>{optionIndex.optionName} {optionIndex.optionPrice ? <span className="price">${optionIndex.optionPrice}</span> : null}</li>
                                             ))
                                         ))}
                                     </ul>
                                 </li>
                             ))}
                         </ul>
+                        <hr />
+                        <p>Subtotal: <span className="price">{this.calculateSubtotal()}</span></p>
+                        <p>Tax: <span className="price">{this.calculateTax()}</span></p>
+                        <p>Total: <span className="price">{this.calculateTotal()}</span></p>
                     </div>
                 </div>
                 {this.state.menu.map(MenuCategory => (
