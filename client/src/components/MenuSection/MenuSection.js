@@ -17,6 +17,7 @@ class MenuSection extends React.Component {
 
         this.handleOptionChange = this.handleOptionChange.bind(this);
         this.addToOrder = this.addToOrder.bind(this);
+        this.getOrderPrices = this.getOrderPrices.bind(this);
         this.calculateSubtotal = this.calculateSubtotal.bind(this);
         this.calculateTax = this.calculateTax.bind(this);
         this.calculateTotal = this.calculateTotal.bind(this);
@@ -126,7 +127,7 @@ class MenuSection extends React.Component {
         });
     };
 
-    calculateSubtotal = () => {
+    getOrderPrices = () => {
         let orderPrices = [];
 
         this.state.order.forEach(function(item) {
@@ -147,14 +148,20 @@ class MenuSection extends React.Component {
                 let itemSubtotal = item.price;
                 orderPrices.push(itemSubtotal);
             };
-
-            const orderSubtotal = orderPrices.reduce(function(total, num) {
-                return total + num;
-            }).toFixed(2);
-            console.log("order subtotal: ", orderSubtotal);
-            return orderSubtotal;
         });
+        return orderPrices;
     };
+
+    calculateSubtotal = () => {
+        const orderPrices = this.getOrderPrices();
+        console.log("order prices: ", orderPrices)
+
+        const orderSubtotal = orderPrices.reduce(function(total, num) {
+            return total + num;
+        }, 0).toFixed(2);
+        console.log("order subtotal: ", orderSubtotal);
+        return orderSubtotal;
+    }
 
     calculateTax = () => {
         const subtotal = this.calculateSubtotal();
@@ -165,8 +172,9 @@ class MenuSection extends React.Component {
     };
 
     calculateTotal = () => {
-        const total = this.calculateSubtotal() + this.calculateTax();
-        console.log("total: ", total);
+        const subtotal = parseFloat(this.calculateSubtotal());
+        const tax = parseFloat(this.calculateTax());
+        const total = subtotal + tax;
         return total;
     }
       
