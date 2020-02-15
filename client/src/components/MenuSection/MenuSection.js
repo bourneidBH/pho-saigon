@@ -174,7 +174,7 @@ class MenuSection extends React.Component {
     calculateTotal = () => {
         const subtotal = parseFloat(this.calculateSubtotal());
         const tax = parseFloat(this.calculateTax());
-        const total = subtotal + tax;
+        const total = (subtotal + tax).toFixed(2);
         return total;
     }
       
@@ -192,7 +192,7 @@ class MenuSection extends React.Component {
                         <ul>
                             {this.state.order.map((item, index) => (
                                 <li key={index}>
-                                    <h6>{item.menuItemId}. {item.itemName} {item.price ? <span className="price">${item.price}</span> : <span className="price">Market price</span>}</h6>
+                                    <h6>{item.menuItemId}. {item.itemName} {item.price ? <span className="price">${item.price}</span> : <span className="price">Market price (not included in total)</span>}</h6>
                                     <ul>
                                         {item.options.map((option) => (
                                             option.map((optionIndex, i) => (
@@ -204,9 +204,9 @@ class MenuSection extends React.Component {
                             ))}
                         </ul>
                         <hr />
-                        <p>Subtotal: <span className="price">{this.calculateSubtotal()}</span></p>
-                        <p>Tax: <span className="price">{this.calculateTax()}</span></p>
-                        <p>Total: <span className="price">{this.calculateTotal()}</span></p>
+                        <p>Subtotal: <span className="price">${this.calculateSubtotal()}</span></p>
+                        <p>Tax: <span className="price">${this.calculateTax()}</span></p>
+                        <p>Total: <span className="price">${this.calculateTotal()}</span></p>
                     </div>
                 </div>
                 {this.state.menu.map(MenuCategory => (
