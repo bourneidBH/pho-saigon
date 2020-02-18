@@ -20,6 +20,14 @@ h3 {
 .card-body {
     margin-bottom: 1.25rem;
 }
+.material-icons {
+    vertical-align: text-bottom;
+    margin-left: .5rem;
+}
+.order-option {
+    padding-top: .3rem;
+    padding-bottom: .3rem;
+}
 
 @media screen and (max-width: 600px) {
     .inner {

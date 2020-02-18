@@ -21,6 +21,8 @@ class MenuSection extends React.Component {
         this.calculateSubtotal = this.calculateSubtotal.bind(this);
         this.calculateTax = this.calculateTax.bind(this);
         this.calculateTotal = this.calculateTotal.bind(this);
+        this.handleItemTrashClick = this.handleItemTrashClick.bind(this);
+        this.handleOptionTrashClick = this.handleOptionTrashClick.bind(this);
     };
 
     // Method to get all menu items from database
@@ -154,7 +156,6 @@ class MenuSection extends React.Component {
 
     calculateSubtotal = () => {
         const orderPrices = this.getOrderPrices();
-        console.log("order prices: ", orderPrices)
 
         const orderSubtotal = orderPrices.reduce(function(total, num) {
             return total + num;
@@ -165,9 +166,7 @@ class MenuSection extends React.Component {
 
     calculateTax = () => {
         const subtotal = this.calculateSubtotal();
-        console.log("subtotal: ", subtotal);
         const tax = (subtotal * .056).toFixed(2);
-        console.log("tax: ", tax);
         return tax; 
     };
 
@@ -177,26 +176,76 @@ class MenuSection extends React.Component {
         const total = (subtotal + tax).toFixed(2);
         return total;
     }
+
+    handleItemTrashClick = index => {
+        console.log("trash icon index clicked: ", index);
+        const order = this.state.order;
+        const updatedOrder = order.slice(0, index).concat(order.slice(index + 1, order.length));
+        this.setState({
+            order: updatedOrder,
+        });
+    };
+
+    handleOptionTrashClick = (index, i) => {
+        console.log("Option " + i + " of item " + index + " clicked");
+        const item = this.state.order[index];
+        const updatedOptions = item.options[0].slice(0, i).concat(item.options[0].slice(i + 1, item.options[0].length));
+        const updatedItem = {
+            ...item,
+            options: [{
+                ...updatedOptions
+            }]
+        }
+        console.log("updated item: ", updatedItem);
+        const order = this.state.order;
+        const updatedOrder = order.slice(0, index).concat(updatedItem, order.slice(index + 1, order.length));
+        console.log("updated order: ", updatedOrder);
+        // this.setState({
+        //     order: updatedOrder,
+        // })
+    };
+
       
     render() {        
         return (
             <div>
                 <p className="centered margin-bottom">Dine in or carry out. For carry-out call <a href="tel:4148289698">414-828-9698</a> or use the online order form below. Pay at the restaurant when you pick up your order.</p>
                 <p className="centered">
+                    {this.state.order.length > 0 ?                     
                     <button className="btn btn-secondary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                         View your order
                     </button>
+                    : null}
                 </p>
                 <div className="collapse" id="collapseExample">
                     <div className="card card-body">
                         <ul>
                             {this.state.order.map((item, index) => (
                                 <li key={index}>
-                                    <h6>{item.menuItemId}. {item.itemName} {item.price ? <span className="price">${item.price}</span> : <span className="price">Market price (not included in total)</span>}</h6>
+                                    <h6>{item.menuItemId}. {item.itemName} {item.price ? 
+                                    <span className="price">
+                                        ${item.price} 
+                                        <span onClick={() => this.handleItemTrashClick(index)} index={index}>
+                                            <i className="material-icons">delete_outline</i>
+                                        </span>
+                                    </span> 
+                                        : 
+                                    <span className="price">"Market price (not included in total)" 
+                                        <span onClick={() => this.handleItemTrashClick(index)} index={index}>
+                                            <i className="material-icons">delete_outline</i>
+                                        </span>
+                                    </span>}</h6>
                                     <ul>
                                         {item.options.map((option) => (
                                             option.map((optionIndex, i) => (
-                                                <li key={i}>{optionIndex.optionName} {optionIndex.optionPrice ? <span className="price">${optionIndex.optionPrice}</span> : null}</li>
+                                                <li className="order-option" key={i}>
+                                                    {optionIndex.optionName} {optionIndex.optionPrice ? 
+                                                    <span className="price">${optionIndex.optionPrice} 
+                                                        <span onClick={() => this.handleOptionTrashClick(index, i)}>
+                                                            <i className="material-icons">delete_outline</i>
+                                                        </span>
+                                                    </span> : null}
+                                                </li>
                                             ))
                                         ))}
                                     </ul>
