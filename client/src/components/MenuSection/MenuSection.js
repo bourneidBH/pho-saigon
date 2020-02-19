@@ -221,24 +221,24 @@ class MenuSection extends React.Component {
                                     <h6>{item.menuItemId}. {item.itemName} {item.price ? 
                                     <span className="price">
                                         ${item.price} 
-                                        <span onClick={() => this.handleItemTrashClick(index)} index={index}>
+                                        <button className="trash" onClick={() => this.handleItemTrashClick(index)} index={index}>
                                             <i className="material-icons">delete_outline</i>
-                                        </span>
+                                        </button>
                                     </span> 
                                         : 
                                     <span className="price">"Market price (not included in total)" 
-                                        <span onClick={() => this.handleItemTrashClick(index)} index={index}>
+                                        <button clasName="trash" onClick={() => this.handleItemTrashClick(index)} index={index}>
                                             <i className="material-icons">delete_outline</i>
-                                        </span>
+                                        </button>
                                     </span>}</h6>
                                     <ul>
                                         {item.options.map((option, i) => (
                                             <li className="order-option" key={i}>
                                                 {option.optionName} {option.optionPrice ? 
                                                 <span className="price">${option.optionPrice} 
-                                                    <span onClick={() => this.handleOptionTrashClick(index, i)}>
+                                                    <button className="trash" onClick={() => this.handleOptionTrashClick(index, i)}>
                                                         <i className="material-icons">delete_outline</i>
-                                                    </span>
+                                                    </button>
                                                 </span> : null}
                                             </li>
                                         ))}
