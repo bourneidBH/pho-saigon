@@ -105,7 +105,7 @@ class MenuSection extends React.Component {
                 const options = this.state.selectedOptions[i].options
                 .filter(option => option.checked);
 
-                selectedItem.options.push(options);
+                selectedItem.options.push(...options);
             };
         };
 
@@ -134,12 +134,8 @@ class MenuSection extends React.Component {
 
         this.state.order.forEach(function(item) {
             if (item.options.length > 0) {
-                let optionPrices = item.options.map(option => (
-                    option.map(optionIndex => optionIndex.optionPrice)
-                ))
-                .reduce(function(total, num) {
-                    return total + num;
-                });
+                let optionPrices = item.options.map(option => (option.optionPrice))
+
                 let optionsTotal = optionPrices.reduce(function(total, num) {
                     return total + num;
                 });
@@ -189,20 +185,20 @@ class MenuSection extends React.Component {
     handleOptionTrashClick = (index, i) => {
         console.log("Option " + i + " of item " + index + " clicked");
         const item = this.state.order[index];
-        const updatedOptions = item.options[0].slice(0, i).concat(item.options[0].slice(i + 1, item.options[0].length));
+        const updatedOptions = item.options.slice(0, i).concat(item.options.slice(i + 1, item.options.length));
         const updatedItem = {
             ...item,
-            options: [{
+            options: [
                 ...updatedOptions
-            }]
+            ]
         }
         console.log("updated item: ", updatedItem);
         const order = this.state.order;
         const updatedOrder = order.slice(0, index).concat(updatedItem, order.slice(index + 1, order.length));
         console.log("updated order: ", updatedOrder);
-        // this.setState({
-        //     order: updatedOrder,
-        // })
+        this.setState({
+            order: updatedOrder,
+        })
     };
 
       
@@ -236,17 +232,15 @@ class MenuSection extends React.Component {
                                         </span>
                                     </span>}</h6>
                                     <ul>
-                                        {item.options.map((option) => (
-                                            option.map((optionIndex, i) => (
-                                                <li className="order-option" key={i}>
-                                                    {optionIndex.optionName} {optionIndex.optionPrice ? 
-                                                    <span className="price">${optionIndex.optionPrice} 
-                                                        <span onClick={() => this.handleOptionTrashClick(index, i)}>
-                                                            <i className="material-icons">delete_outline</i>
-                                                        </span>
-                                                    </span> : null}
-                                                </li>
-                                            ))
+                                        {item.options.map((option, i) => (
+                                            <li className="order-option" key={i}>
+                                                {option.optionName} {option.optionPrice ? 
+                                                <span className="price">${option.optionPrice} 
+                                                    <span onClick={() => this.handleOptionTrashClick(index, i)}>
+                                                        <i className="material-icons">delete_outline</i>
+                                                    </span>
+                                                </span> : null}
+                                            </li>
                                         ))}
                                     </ul>
                                 </li>
