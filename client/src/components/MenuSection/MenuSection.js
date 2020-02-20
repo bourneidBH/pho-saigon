@@ -24,6 +24,7 @@ class MenuSection extends React.Component {
         this.handleItemTrashClick = this.handleItemTrashClick.bind(this);
         this.handleOptionTrashClick = this.handleOptionTrashClick.bind(this);
         this.handleQuantityChange = this.handleQuantityChange.bind(this);
+        this.handleInputChange = this.handleInputChange.bind(this);
     };
 
     // Method to get all menu items from database
@@ -210,6 +211,17 @@ class MenuSection extends React.Component {
         }, () => console.log("order ", this.state.order));
     };
 
+    handleInputChange = event => {
+        this.setState( {[event.target.name]: event.target.value}, 
+            () => {
+                console.log("name: ", this.state.name);
+                console.log("phone: ", this.state.phone);
+                console.log("email: ", this.state.email);
+                console.log("pickup time: ", this.state.pickuptime);
+                console.log("special requests: ", this.state.specialrequests);
+        });
+    };
+
       
     render() {        
         return (
@@ -271,6 +283,40 @@ class MenuSection extends React.Component {
                         <p>Subtotal: <span className="price">${this.calculateSubtotal()}</span></p>
                         <p>Tax: <span className="price">${this.calculateTax()}</span></p>
                         <p>Total: <span className="price">${this.calculateTotal()}</span></p>
+                        <hr />
+                        <h5>Your Contact Info</h5>
+                        <form>
+                            <div className="form-group row">
+                                <label htmlFor="name" className="col-sm-2 col-form-label col-form-label-sm">Name</label>
+                                <div className="col-sm-4">
+                                    <input type="text" className="form-control form-control-sm" id="name" name="name" placeholder="Name" onChange={this.handleInputChange} />
+                                </div>
+                                <label htmlFor="phone" className="col-sm-2 col-form-label col-form-label-sm">Phone</label>
+                                <div className="col-sm-4">
+                                    <input type="tel" className="form-control form-control-sm" id="phone" name="phone" placeholder="Format: 123-456-7890" 
+                                    pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"  onChange={this.handleInputChange} />
+                                </div>
+                            </div>
+                            <div className="form-group row">
+                                <label htmlFor="email" className="col-sm-2 col-form-label col-form-label-sm">Email (required)</label>
+                                <div className="col-sm-4">
+                                    <input type="email" className="form-control form-control-sm" id="email" name="email" placeholder="Email" required onChange={this.handleInputChange} />
+                                </div>
+                                <label htmlFor="pickuptime" className="col-sm-2 col-form-label col-form-label-sm">Pick-up time</label>
+                                <div className="col-sm-4">
+                                    <input type="time" className="form-control form-control-sm" id="pickuptime" name="pickuptime" placeholder="Order pick-up time" onChange={this.handleInputChange} />
+                                </div>
+                            </div>
+                            <div className="form-group row">
+                                <label htmlFor="name" className="col-sm-2 col-form-label col-form-label-sm">Any special requests</label>
+                                <div className="col-sm-10">
+                                    <textarea className="form-control form-control-sm" id="specialrequests" name="specialrequests" rows="3" placeholder="Any special requests" onChange={this.handleInputChange}></textarea>
+                                </div>
+                            </div>
+                            <div className="centered">
+                                <button className="btn btn-secondary btn-sm" type="submit">Submit</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
                 {this.state.menu.map(MenuCategory => (
