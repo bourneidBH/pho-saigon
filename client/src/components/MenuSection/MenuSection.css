@@ -37,8 +37,12 @@ h3 {
     outline: none;
 }
 .order-option {
-    padding-top: .3rem;
-    padding-bottom: .3rem;
+    padding: .3rem 0;
+    margin-left: 120px;
+}
+.quantity {
+    margin: 0 20px;
+    width: 3rem;
 }
 
 @media screen and (max-width: 600px) {

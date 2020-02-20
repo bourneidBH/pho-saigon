@@ -14,7 +14,8 @@ class Button extends React.Component {
             menuItemId: this.props.menuItemId, 
             itemName: this.props.itemName,
             price: this.props.price,
-            options: []
+            options: [],
+            quantity: 1
         })
     };
 

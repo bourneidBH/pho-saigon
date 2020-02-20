@@ -23,6 +23,7 @@ class MenuSection extends React.Component {
         this.calculateTotal = this.calculateTotal.bind(this);
         this.handleItemTrashClick = this.handleItemTrashClick.bind(this);
         this.handleOptionTrashClick = this.handleOptionTrashClick.bind(this);
+        this.handleQuantityChange = this.handleQuantityChange.bind(this);
     };
 
     // Method to get all menu items from database
@@ -139,11 +140,11 @@ class MenuSection extends React.Component {
                 let optionsTotal = optionPrices.reduce(function(total, num) {
                     return total + num;
                 });
-                let itemSubtotal = optionsTotal + item.price;
+                let itemSubtotal = (optionsTotal + item.price) * item.quantity;
                 orderPrices.push(itemSubtotal);
 
             } else {
-                let itemSubtotal = item.price;
+                let itemSubtotal = item.price * item.quantity;
                 orderPrices.push(itemSubtotal);
             };
         });
@@ -198,7 +199,15 @@ class MenuSection extends React.Component {
         console.log("updated order: ", updatedOrder);
         this.setState({
             order: updatedOrder,
-        })
+        });
+    };
+
+    handleQuantityChange = (index, value) => {
+        this.setState({
+            order: this.state.order.map((item, i) => (
+              i === index ? {...item, quantity: value} : item
+            )),
+        }, () => console.log("order ", this.state.order));
     };
 
       
@@ -218,24 +227,36 @@ class MenuSection extends React.Component {
                         <ul>
                             {this.state.order.map((item, index) => (
                                 <li key={index}>
-                                    <h6>{item.menuItemId}. {item.itemName} {item.price ? 
-                                    <span className="price">
-                                        ${item.price} 
-                                        <button className="trash" onClick={() => this.handleItemTrashClick(index)} index={index}>
-                                            <i className="material-icons">delete_outline</i>
-                                        </button>
-                                    </span> 
-                                        : 
-                                    <span className="price">"Market price (not included in total)" 
-                                        <button clasName="trash" onClick={() => this.handleItemTrashClick(index)} index={index}>
-                                            <i className="material-icons">delete_outline</i>
-                                        </button>
-                                    </span>}</h6>
+                                    <h6>
+                                        <div className="form-check form-check-inline">
+                                            <label className="form-check-label" htmlFor="quantity">Qty</label>
+                                            <input className="form-control form-control-sm quantity" name="quantity" 
+                                                type="number" min="1" defaultValue="1" 
+                                                onChange={event => this.handleQuantityChange(index, parseInt(event.target.value))} 
+                                            />
+                                        </div>
+
+                                        {item.menuItemId}. {item.itemName} 
+                                        {item.price ? 
+                                        <span className="price">
+                                            ${(item.price * item.quantity).toFixed(2)} 
+                                            <button className="trash" onClick={() => this.handleItemTrashClick(index)} index={index}>
+                                                <i className="material-icons">delete_outline</i>
+                                            </button>
+                                        </span> 
+                                            : 
+                                        <span className="price">
+                                            "Market price (not included in total)" 
+                                            <button className="trash" onClick={() => this.handleItemTrashClick(index)} index={index}>
+                                                <i className="material-icons">delete_outline</i>
+                                            </button>
+                                        </span>}
+                                    </h6>
                                     <ul>
                                         {item.options.map((option, i) => (
                                             <li className="order-option" key={i}>
                                                 {option.optionName} {option.optionPrice ? 
-                                                <span className="price">${option.optionPrice} 
+                                                <span className="price">${(option.optionPrice * item.quantity).toFixed(2)} 
                                                     <button className="trash" onClick={() => this.handleOptionTrashClick(index, i)}>
                                                         <i className="material-icons">delete_outline</i>
                                                     </button>
