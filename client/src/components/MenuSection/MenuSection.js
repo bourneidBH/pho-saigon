@@ -1,5 +1,6 @@
 import React from "react";
 import API from "../../utils/API.js";
+import axios from 'axios';
 import "./MenuSection.css";
 import Container from "../Container";
 import MenuItem from "../MenuItem";
@@ -25,6 +26,8 @@ class MenuSection extends React.Component {
         this.handleOptionTrashClick = this.handleOptionTrashClick.bind(this);
         this.handleQuantityChange = this.handleQuantityChange.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleOrderSubmit = this.handleOrderSubmit.bind(this);
+        this.resetOrderForm = this.resetOrderForm.bind(this);
     };
 
     // Method to get all menu items from database
@@ -222,6 +225,70 @@ class MenuSection extends React.Component {
         });
     };
 
+    handleOrderSubmit = event => {
+        event.preventDefault();
+
+        const name = document.getElementById('name').value;
+        const phone = document.getElementById('phone').value;
+        const email = document.getElementById('email').value;
+        const pickupTime = document.getElementById('pickuptime').value;
+        const orderDetails = this.state.order.map(item => (
+            <p>Quantity ({item.quantity}): {item.menuItemId}. {item.itemName} ${item.price * item.quantity}
+                {item.options.length > 0 ? 
+                <ul>
+                    {item.options.map((option, i) => (
+                        <li key={i}>{option.optionName} ${option.optionPrice * item.quantity}</li>
+                    ))}
+                </ul>
+                : null
+            }
+            </p>
+        ));
+        const specialRequests = document.getElementById('specialrequests').value;
+        const orderSubtotal = <p>Subtotal: ${this.calculateSubtotal()}</p>
+        const tax = <p>Tax: ${this.calculateTax()}</p>
+        const total = <p>Total: ${this.calculateTotal()}</p>
+
+        axios({
+            method: 'POST',
+            url: "http://localhost:3001/sendorder",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              },
+            data: {
+                name: name,
+                phone: phone,
+                email: email,
+                pickupTime: pickupTime,
+                orderDetails: orderDetails,
+                specialRequests: specialRequests,
+                orderSubtotal: orderSubtotal,
+                tax: tax,
+                total: total
+            }
+        }).then(response => {
+            if (response.data.msg === 'success') {
+                alert('Thank you for your order. We will contact you if we have any questions.');
+                this.resetOrderForm();
+            } else {
+                alert("We're sorry! Your order failed to send. Please try again or call 414-828-9698.");
+            }
+        }).catch(err => console.log(err));
+    };
+
+    resetOrderForm = () => {
+        document.getElementById('order-form').reset();
+        this.setState({
+            order: [],
+            name: "",
+            phone: "",
+            email: "",
+            pickupTime: null,
+            orderDetails: null,
+            specialRequests: "",
+        });
+    }
       
     render() {        
         return (
@@ -285,7 +352,7 @@ class MenuSection extends React.Component {
                         <p>Total: <span className="price">${this.calculateTotal()}</span></p>
                         <hr />
                         <h5>Your Contact Info</h5>
-                        <form>
+                        <form id="order-form" onSubmit={this.handleOrderSubmit} method="POST">
                             <div className="form-group row">
                                 <label htmlFor="name" className="col-sm-2 col-form-label col-form-label-sm">Name</label>
                                 <div className="col-sm-4">
