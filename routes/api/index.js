@@ -1,16 +1,31 @@
 const router = require('express').Router();
 const nodemailer = require('nodemailer');
-// const xoauth2 = require('xoauth2');
+const xoauth2 = require('xoauth2');
 const menuRoutes = require('./menu');
 const creds = require('../../config/config');
 
 // Email routes
 const transport = {
-  host: 'mail.twc.com',
-  port: 993,
-  secure: true,
-  user: creds.USER,
-  pass: creds.PASS
+  service: 'gmail',
+  // auth: {
+  //   xoauth2: xoauth2.createXOAuth2Generator({
+  //     user: creds.USER,
+  //     clientId: creds.CLIENT_ID,
+  //     clientSecret: creds.CLIENT_SECRET,
+  //     refreshToken: ''
+  //   })
+  // }
+  // host: 'mail.twc.com',
+  // port: 993,
+  // secure: true,
+  // user: creds.USER,
+  // pass: creds.PASS,
+  auth: {
+    type: "OAuth2",
+    user: creds.USER,
+    clientId: creds.CLIENT_ID,
+    clientSecret: creds.CLIENT_SECRET,
+  }
 }
 
 const transporter = nodemailer.createTransport(transport);

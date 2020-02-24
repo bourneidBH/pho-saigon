@@ -1,8 +1,11 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const routes = require("./routes");
+const cors = require('cors'); // include CORS middleware
 const app = express();
 const PORT = process.env.PORT || 3001;
+
+app.use(cors()); // Then use it *before* your routes
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));

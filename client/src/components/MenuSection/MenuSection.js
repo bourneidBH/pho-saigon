@@ -251,7 +251,7 @@ class MenuSection extends React.Component {
 
         axios({
             method: 'POST',
-            url: "http://localhost:3001/sendorder",
+            url: "/api/sendorder",
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
