@@ -6,7 +6,7 @@ const creds = require('../../config/config');
 
 // Email routes
 const transport = {
-  service: 'gmail',
+  // service: 'gmail',
   // auth: {
   //   xoauth2: xoauth2.createXOAuth2Generator({
   //     user: creds.USER,
@@ -20,15 +20,28 @@ const transport = {
   // secure: true,
   // user: creds.USER,
   // pass: creds.PASS,
+  // auth: {
+  //   type: "OAuth2",
+  //   user: creds.USER,
+  //   clientId: creds.CLIENT_ID,
+  //   clientSecret: creds.CLIENT_SECRET,
+  // }
+  host: 'smtp.mailtrap.io',
+  port: 2525,
   auth: {
-    type: "OAuth2",
-    user: creds.USER,
-    clientId: creds.CLIENT_ID,
-    clientSecret: creds.CLIENT_SECRET,
-  }
+    user: creds.TESTUSER,
+    pass: creds.TESTPASS
+    }
 }
 
-const transporter = nodemailer.createTransport(transport);
+const transporter = nodemailer.createTransport({
+  host: "smtp.mailtrap.io",
+  port: 2525,
+  auth: {
+    user: "cba4ab1ff718b8",
+    pass: "71ab175e350aaf"
+  }
+});
 
 transporter.verify(error => {
   if (error) {

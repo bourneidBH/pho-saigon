@@ -14,7 +14,7 @@ function Navbar() {
                         <a className="nav-item nav-link" href="/menu">Menu</a>
                         <a className="nav-item nav-link menu-left" href="/location">Find Us</a>
                         <a className="nav-item nav-link menu-right" href="#">About</a>
-                        <a className="nav-item nav-link" href="#">Contact</a>
+                        <a className="nav-item nav-link" href="/contact">Contact</a>
                     </div>
                 </div>
             </nav>

@@ -271,7 +271,7 @@ class MenuSection extends React.Component {
             if (response.data.msg === 'success') {
                 alert('Thank you for your order. We will contact you if we have any questions.');
                 this.resetOrderForm();
-            } else {
+            } else if (response.data.msg === 'fail') {
                 alert("We're sorry! Your order failed to send. Please try again or call 414-828-9698.");
             }
         }).catch(err => console.log(err));
@@ -381,7 +381,7 @@ class MenuSection extends React.Component {
                                 </div>
                             </div>
                             <div className="centered">
-                                <button className="btn btn-secondary btn-sm" type="submit">Submit</button>
+                                <button className="btn btn-secondary btn-sm" type="submit" onClick={this.handleOrderSubmit}>Submit</button>
                             </div>
                         </form>
                     </div>
