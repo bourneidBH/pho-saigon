@@ -2,6 +2,7 @@ import React from "react";
 import Header from "../components/Header";
 // import MenuAdditionForm from "../components/MenuAdditionForm";
 import Container from "../components/Container";
+import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
 
 class AdminAddMenuItem extends React.Component {
@@ -78,9 +79,13 @@ class AdminAddMenuItem extends React.Component {
     render() {
         return(
             <div>
-                <Header 
-                    h1="Add a menu item"
-                />
+                <Header />
+                <Container fluid>
+                    <Jumbotron 
+                        h1="Add a menu item"
+                    />
+                </Container>
+
                 <main>
                     {/* <MenuAdditionForm
                     menuItemId={this.state.menuItemId}

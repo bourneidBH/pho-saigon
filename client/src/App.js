@@ -8,6 +8,7 @@ import AdminAddMenuItem from "./pages/AdminAddMenuItem";
 import NoMatch from "./pages/NoMatch";
 import FindUs from "./pages/FindUs";
 import Contact from "./pages/Contact";
+import AdminEditMenuItem from './pages/AdminEditMenuItem';
 
 function App() {
   return (
@@ -18,9 +19,10 @@ function App() {
           <Route exact path="/home" component={Home} />
           <Route exact path="/menu" component={Menu} />
           <Route exact path="/api/menu" component={Menu} />
-          <Route exact path="/admin/addItem" component={AdminAddMenuItem} />
           <Route exact path="/location" component={FindUs} />
           <Route exact path="/contact" component={Contact} />
+          <Route exact path="/admin/addItem" component={AdminAddMenuItem} />
+          <Route exact path="/admin/editItem" component={AdminEditMenuItem} />
           <Route component={NoMatch} />
         </Switch>
       </div>
