@@ -1,6 +1,7 @@
 import React from 'react';
 import Container from '../Container';
 import API from '../../utils/API';
+import "./EditMenuItemForm.css";
 
 class EditMenuItemForm extends React.Component {
   constructor(props) {
@@ -8,6 +9,9 @@ class EditMenuItemForm extends React.Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleItemChange = this.handleItemChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleOptionChange = this.handleOptionChange.bind(this);
+    this.resetForm = this.resetForm.bind(this);
     this.description = React.createRef();
     this.price = React.createRef();
     this.itemNameVietnamese = React.createRef();
@@ -34,6 +38,15 @@ class EditMenuItemForm extends React.Component {
     this.setState({[event.target.name]: event.target.value});
   };
 
+  handleOptionChange = (i, value) => {
+    this.setState({
+      options: this.state.options.map((option, index) => (
+        index === i ? {...option, optionPrice: value} : option
+      )),
+  }, () => console.log("options: ", this.state.options));
+
+  }
+
   // Handles updating component state when the user changes drop-down selection
   handleItemChange = event => {
     this.setState({
@@ -42,6 +55,7 @@ class EditMenuItemForm extends React.Component {
       console.log("selected item ID: ", this.state.selectedItemId);
       console.log("char at 0: ", this.state.selectedItemId.charAt(0));
 
+      // identify which category item belongs to
       let categoryName = "";
       let categoryChar = this.state.selectedItemId.charAt(0);
       let categoryChar2 = this.state.selectedItemId.charAt(1);
@@ -98,6 +112,52 @@ class EditMenuItemForm extends React.Component {
       });    
     });
   };
+
+  resetForm = () => {
+    document.getElementById('edit-item-form').reset();
+        this.setState({
+          selectedItemId: "",
+          selectedItem: {},
+          itemName: "",
+          itemNameVietnamese: "",
+          description: "",
+          categoryName: "",
+          price: "",
+          image: "",
+          options: [],
+          optionPrice: "",    
+        });
+  }
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+
+    const id = this.state.selectedItem._id;
+
+    const itemData = {
+      _id: this.state.selectedItem._id,
+      menuItemId: this.state.selectedItem.menuItemId,
+      itemName: this.state.selectedItem.itemName,
+      itemNameVietnamese: this.state.itemNameVietnamese,
+      description: this.state.description,
+      price: this.state.price,
+      options: this.state.options,
+    }
+    console.log("data to update: ", itemData, "item to update: ", id);
+    
+    API.updateItem(id, itemData)
+    .then(
+      API.getMenuItems()
+      .then(res => {
+        console.log("updated menu: ", res.data);
+        this.setState({menu: res.data});
+      })
+      .catch(err => console.log(err))
+    )
+    .catch(err => console.log(err))
+    
+    this.resetForm();
+  };
   
   // Method to get all menu items from database
   loadMenuItems = () => {
@@ -117,7 +177,7 @@ class EditMenuItemForm extends React.Component {
   render() {
     return(
       <Container>
-        <form>
+        <form id="edit-item-form">
           <div className="form-group">
             <label htmlFor="selectItem">Select an item to edit</label>
             <select className="form-control" id="selectedItemId" name="selectedItemId"  defaultValue="None" onChange={this.handleItemChange}>
@@ -147,11 +207,11 @@ class EditMenuItemForm extends React.Component {
               <div className="col-sm-2">{option.optionName}</div>
               <label htmlFor="optionPrice" className="col-sm-1 col-form-label">Price</label>
               <div className="col-sm-9">
-                <input className="form-control" name="optionPrice" id="optionPrice" type="number" step={0.01} ref={option.optionPrice} defaultValue={this.state.options[i].optionPrice ? this.state.options[i].optionPrice : option.optionPrice} onChange={this.handleChange} />
+                <input className="form-control" name="optionPrice" id="optionPrice" type="number" step={0.01} ref={option.optionPrice} defaultValue={this.state.options[i].optionPrice ? this.state.options[i].optionPrice : option.optionPrice} onChange={event => this.handleOptionChange(i, parseFloat(event.target.value))} />
               </div>
             </div>
           ))}
-
+          <button className="btn btn-secondary" type="submit" id={this.state.selectedItem._id} onClick={this.handleSubmit}>Submit</button>
         </form>
       </Container>
     )
