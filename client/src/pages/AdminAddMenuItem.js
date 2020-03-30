@@ -116,7 +116,7 @@ class AdminAddMenuItem extends React.Component {
                             </div>
                             <div className="form-group">
                                 <label htmlFor="description">Description</label>
-                                <input className="form-control" name="description" description="description" value={this.state.description} type="text" placeholder="Item description" size="50" onChange={this.handleChange} />
+                                <textarea className="form-control" name="description" description="description" value={this.state.description} type="text" placeholder="Item description" rows="3" onChange={this.handleChange}></textarea>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="categoryName">Menu Category</label>

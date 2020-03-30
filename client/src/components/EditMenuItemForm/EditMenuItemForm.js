@@ -15,6 +15,7 @@ class EditMenuItemForm extends React.Component {
     this.description = React.createRef();
     this.price = React.createRef();
     this.itemNameVietnamese = React.createRef();
+    this.itemName = React.createRef();
     this.optionPrice = React.createRef();
 
     this.state = {
@@ -29,9 +30,8 @@ class EditMenuItemForm extends React.Component {
       image: "",
       options: [],
       optionPrice: "",
-    }
-
-  }
+    };
+  };
 
   // Handles updating component state when the user types into the input field
   handleChange = event => {
@@ -43,9 +43,8 @@ class EditMenuItemForm extends React.Component {
       options: this.state.options.map((option, index) => (
         index === i ? {...option, optionPrice: value} : option
       )),
-  }, () => console.log("options: ", this.state.options));
-
-  }
+    }, () => console.log("options: ", this.state.options));
+  };
 
   // Handles updating component state when the user changes drop-down selection
   handleItemChange = event => {
@@ -89,7 +88,7 @@ class EditMenuItemForm extends React.Component {
             categoryName = "Vermicelli (Dry Noodles)";
             break;
           case "R": 
-            categoryName = "Rice Dished";
+            categoryName = "Rice Dishes";
             break;
           default:
             categoryName = "Beverages";
@@ -137,12 +136,13 @@ class EditMenuItemForm extends React.Component {
     const itemData = {
       _id: this.state.selectedItem._id,
       menuItemId: this.state.selectedItem.menuItemId,
-      itemName: this.state.selectedItem.itemName,
-      itemNameVietnamese: this.state.itemNameVietnamese,
-      description: this.state.description,
-      price: this.state.price,
+      itemName: this.itemName.current.value,
+      itemNameVietnamese: this.itemNameVietnamese.current.value,
+      description: this.description.current.value,
+      price: this.price.current.value,
       options: this.state.options,
     }
+
     console.log("data to update: ", itemData, "item to update: ", id);
     
     API.updateItem(id, itemData)
@@ -177,7 +177,7 @@ class EditMenuItemForm extends React.Component {
   render() {
     return(
       <Container>
-        <form id="edit-item-form">
+        <form id="edit-item-form" onSubmit={this.handleSubmit}>
           <div className="form-group">
             <label htmlFor="selectItem">Select an item to edit</label>
             <select className="form-control" id="selectedItemId" name="selectedItemId"  defaultValue="None" onChange={this.handleItemChange}>
@@ -190,28 +190,33 @@ class EditMenuItemForm extends React.Component {
             </select>
           </div>
           <div className="form-group">
+              <label htmlFor="itemName">Item Name</label>
+              <input className="form-control" name="itemName" id="itemName" ref={this.itemName} type="text" defaultValue={this.state.selectedItem.itemName} />
+          </div>
+          <div className="form-group">
               <label htmlFor="itemNameVietnamese">Vietnamese Name</label>
-              <input className="form-control" name="itemNameVietnamese" id="itemNameVietnamese" ref={this.state.itemNameVietnamese} type="text" defaultValue={this.state.selectedItem.itemNameVietnamese ? this.state.selectedItem.itemNameVietnamese : this.state.itemNameVietnamese} onChange={this.handleChange} />
+              <input className="form-control" name="itemNameVietnamese" id="itemNameVietnamese" ref={this.itemNameVietnamese} type="text" defaultValue={this.state.selectedItem.itemNameVietnamese} />
           </div>
           <div className="form-group">
               <label htmlFor="description">Description</label>
-              <textarea className="form-control" name="description" id="description" ref={this.state.description} type="textarea" defaultValue={this.state.selectedItem.description ? this.state.selectedItem.description : this.state.description} rows="3" onChange={this.handleChange}></textarea>
+              <textarea className="form-control" name="description" id="description" ref={this.description} type="textarea" defaultValue={this.state.selectedItem.description} rows="3"></textarea>
           </div>
           <div className="form-group">
               <label htmlFor="price">Price</label>
-              <input className="form-control" name="price" id="price" ref={this.state.price} defaultValue={this.state.selectedItem.price ? this.state.selectedItem.price : this.state.price} type="number" step={0.01} onChange={this.handleChange} />
+              <input className="form-control" name="price" id="price" ref={this.price} defaultValue={this.state.selectedItem.price} type="number" step={0.01} />
           </div>
+
           {this.state.options.length > 0 ? <p><strong>Options for this item:</strong></p> : null}
           {this.state.options.map((option, i) => (
             <div className="form-group row" key={i}>
               <div className="col-sm-2">{option.optionName}</div>
               <label htmlFor="optionPrice" className="col-sm-1 col-form-label">Price</label>
               <div className="col-sm-9">
-                <input className="form-control" name="optionPrice" id="optionPrice" type="number" step={0.01} ref={option.optionPrice} defaultValue={this.state.options[i].optionPrice ? this.state.options[i].optionPrice : option.optionPrice} onChange={event => this.handleOptionChange(i, parseFloat(event.target.value))} />
+                <input className="form-control" name="optionPrice" id="optionPrice" type="number" step={0.01} ref={this.optionPrice} defaultValue={this.state.options[i].optionPrice} onChange={event => this.handleOptionChange(i, parseFloat(event.target.value))} />
               </div>
             </div>
           ))}
-          <button className="btn btn-secondary" type="submit" id={this.state.selectedItem._id} onClick={this.handleSubmit}>Submit</button>
+          <button className="btn btn-secondary" type="submit" id={this.state.selectedItem._id} value="Submit">Submit</button>
         </form>
       </Container>
     )

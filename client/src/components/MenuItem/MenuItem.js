@@ -14,7 +14,7 @@ function MenuItem(props) {
                     </div> : null
                 }
                 <h4>{menuItemId}. {itemName}</h4>
-                <h5>{itemNameVietnamese}</h5>
+                <h6>{itemNameVietnamese}</h6>
                 <p>{description}</p>
             </div>
             <div className="col-md-2 align-end">
