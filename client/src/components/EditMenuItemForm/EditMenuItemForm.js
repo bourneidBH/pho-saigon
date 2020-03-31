@@ -114,18 +114,18 @@ class EditMenuItemForm extends React.Component {
 
   resetForm = () => {
     document.getElementById('edit-item-form').reset();
-        this.setState({
-          selectedItemId: "",
-          selectedItem: {},
-          itemName: "",
-          itemNameVietnamese: "",
-          description: "",
-          categoryName: "",
-          price: "",
-          image: "",
-          options: [],
-          optionPrice: "",    
-        });
+    this.setState({
+      selectedItemId: "",
+      selectedItem: {},
+      itemName: "",
+      itemNameVietnamese: "",
+      description: "",
+      categoryName: "",
+      price: "",
+      image: "",
+      options: [],
+      optionPrice: "",    
+    });
   }
 
   handleSubmit = (event) => {
@@ -199,7 +199,7 @@ class EditMenuItemForm extends React.Component {
           </div>
           <div className="form-group">
               <label htmlFor="description">Description</label>
-              <textarea className="form-control" name="description" id="description" ref={this.description} type="textarea" defaultValue={this.state.selectedItem.description} rows="3"></textarea>
+              <textarea className="form-control" name="description" id="description" ref={this.description} defaultValue={this.state.selectedItem.description} rows="3"></textarea>
           </div>
           <div className="form-group">
               <label htmlFor="price">Price</label>
