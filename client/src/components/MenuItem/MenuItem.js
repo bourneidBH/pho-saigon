@@ -1,6 +1,6 @@
 import React from "react";
 import "./MenuItem.css";
-import Button from "../Button";
+import OrderButton from "../OrderButton";
 
 function MenuItem(props) {
     const { menuItemId, itemName, itemNameVietnamese, description, price, image, callback, optionName, categoryName } = props;
@@ -22,7 +22,7 @@ function MenuItem(props) {
                     {price ? "$" + price : "Market price"}
                 </p>
                 <br /><br />
-                <Button
+                <OrderButton
                 menuItemId={menuItemId}
                 itemName={itemName}
                 optionName={optionName}

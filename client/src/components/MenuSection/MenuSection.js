@@ -5,6 +5,7 @@ import "./MenuSection.css";
 import Container from "../Container";
 import MenuItem from "../MenuItem";
 import ItemOptionsForm from "../ItemOptionsForm";
+import TrashButton from "../TrashButton";
 
 class MenuSection extends React.Component {
     constructor(props) {
@@ -318,27 +319,29 @@ class MenuSection extends React.Component {
                                         {item.menuItemId}. {item.itemName} 
                                         {item.price ? 
                                         <span className="price">
-                                            ${(item.price * item.quantity).toFixed(2)} 
-                                            <button className="trash" onClick={() => this.handleItemTrashClick(index)} index={index}>
-                                                <i className="material-icons">delete_outline</i>
-                                            </button>
+                                            ${(item.price * item.quantity).toFixed(2)}
+                                            <TrashButton
+                                                onClick={() => this.handleItemTrashClick(index)}
+                                                index={index}
+                                            /> 
                                         </span> 
                                             : 
                                         <span className="price">
-                                            "Market price (not included in total)" 
-                                            <button className="trash" onClick={() => this.handleItemTrashClick(index)} index={index}>
-                                                <i className="material-icons">delete_outline</i>
-                                            </button>
+                                            "Market price (not included in total)"
+                                            <TrashButton
+                                                onClick={() => this.handleItemTrashClick(index)}
+                                                index={index}
+                                            />
                                         </span>}
                                     </h6>
                                     <ul>
                                         {item.options.map((option, i) => (
                                             <li className="order-option" key={i}>
                                                 {option.optionName} {option.optionPrice ? 
-                                                <span className="price">${(option.optionPrice * item.quantity).toFixed(2)} 
-                                                    <button className="trash" onClick={() => this.handleOptionTrashClick(index, i)}>
-                                                        <i className="material-icons">delete_outline</i>
-                                                    </button>
+                                                <span className="price">${(option.optionPrice * item.quantity).toFixed(2)}
+                                                    <TrashButton
+                                                        onClick={() => this.handleOptionTrashClick(index, i)}
+                                                    />
                                                 </span> : null}
                                             </li>
                                         ))}

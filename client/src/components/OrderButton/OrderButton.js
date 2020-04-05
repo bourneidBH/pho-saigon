@@ -1,7 +1,7 @@
 import React from "react";
-import "./Button.css";
+import "./OrderButton.css";
 
-class Button extends React.Component {
+class OrderButton extends React.Component {
     constructor(props) {
         super(props)
 
@@ -27,4 +27,4 @@ class Button extends React.Component {
     };
 };
 
-export default Button;
+export default OrderButton;
