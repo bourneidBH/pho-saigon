@@ -161,7 +161,7 @@ class EditMenuItemForm extends React.Component {
       optionPrice: "",
       optionType: "",    
     });
-  }
+  };
 
   handleSubmit = (event) => {
     event.preventDefault();
@@ -261,34 +261,6 @@ class EditMenuItemForm extends React.Component {
             handleChange={this.handleChange}
             addOption={this.addOption}
           />
-          {/* <div className="form-group">
-            <p>Add an option to this item <AddOptionButton /></p>
-            
-            <div className="collapse" id="collapseExample">
-              <div className="form-group row">
-                <div className="col-sm-4">
-                  <input className="form-control" name="optionName" id="optionName" type="text" value={this.optionName} placeholder="Option name" onChange={this.handleChange} />
-                </div>
-                <div className="col-sm-6">
-                  <div className="form-check form-check-inline">
-                    <input className="form-check-input" type="radio" name="optionType" id="radio" value="radio" onChange={this.handleChange} />
-                    <label className="form-check-label" htmlFor="radio">
-                      Allow only 1 selection
-                    </label>
-                  </div>
-                  <div className="form-check form-check-inline">
-                    <input className="form-check-input" type="radio" name="optionType" id="checkbox" value="checkbox" onChange={this.handleChange} />
-                    <label className="form-check-label" htmlFor="checkbox">
-                      Allow multiple option selections
-                    </label>
-                  </div>
-                </div>
-                <div className="col-sm-2">
-                  <button className="btn btn-sm btn-secondary" type="submit" onClick={this.addOption}>Add option</button>
-                </div>
-              </div>
-            </div>
-          </div> */}
           <button className="btn btn-secondary" type="submit" id={this.state.selectedItem._id} value="Submit">Submit</button>
         </form>
       </Container>

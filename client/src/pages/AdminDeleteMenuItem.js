@@ -1,23 +1,23 @@
 import React from 'react';
 import Container from '../components/Container';
-import EditMenuItemForm from '../components/EditMenuItemForm';
+import DeleteMenuItemForm from '../components/DeleteMenuItemForm';
 import Header from '../components/Header';
 import Jumbotron from '../components/Jumbotron';
 
-function AdminEditMenuItem() {
+function AdminDeleteMenuItem() {
   return(
     <div>
       <Header />
       <Container fluid>
         <Jumbotron
-          h1="Edit a menu item"
+          h1="Delete a menu item"
         />
       </Container>
       <main>
-        <EditMenuItemForm />
+        <DeleteMenuItemForm />
       </main>
     </div>
   )
-}
+};
 
-export default AdminEditMenuItem;
+export default AdminDeleteMenuItem;

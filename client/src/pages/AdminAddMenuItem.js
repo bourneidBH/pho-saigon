@@ -98,6 +98,7 @@ class AdminAddMenuItem extends React.Component {
                 categoryName: "",
                 price: "",
                 image: "",
+                options: [],
             })
         };
     };
