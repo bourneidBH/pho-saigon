@@ -2,6 +2,7 @@ import React from 'react';
 import Container from '../Container';
 import API from '../../utils/API';
 import "./EditMenuItemForm.css";
+import TrashButton from "../TrashButton";
 
 class EditMenuItemForm extends React.Component {
   constructor(props) {
@@ -11,6 +12,7 @@ class EditMenuItemForm extends React.Component {
     this.handleItemChange = this.handleItemChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleOptionChange = this.handleOptionChange.bind(this);
+    this.handleOptionTrashClick = this.handleOptionTrashClick.bind(this);
     this.resetForm = this.resetForm.bind(this);
     this.description = React.createRef();
     this.price = React.createRef();
@@ -44,6 +46,22 @@ class EditMenuItemForm extends React.Component {
         index === i ? {...option, optionPrice: value} : option
       )),
     }, () => console.log("options: ", this.state.options));
+  };
+
+  handleOptionTrashClick = (i) => {
+    console.log("Option " + i + " of item " + this.state.selectedItemId + " clicked");
+    const item = this.state.selectedItem;
+    const updatedOptions = item.options.slice(0, i).concat(item.options.slice(i + 1, item.options.length));
+    // const updatedItem = {
+    //     ...item,
+    //     options: [
+    //         ...updatedOptions
+    //     ]
+    // }
+    // console.log("updated item: ", updatedItem);
+    this.setState({
+      options: updatedOptions
+    });
   };
 
   // Handles updating component state when the user changes drop-down selection
@@ -211,8 +229,13 @@ class EditMenuItemForm extends React.Component {
             <div className="form-group row" key={i}>
               <div className="col-sm-2">{option.optionName}</div>
               <label htmlFor="optionPrice" className="col-sm-1 col-form-label">Price</label>
-              <div className="col-sm-9">
+              <div className="col-sm-8">
                 <input className="form-control" name="optionPrice" id="optionPrice" type="number" step={0.01} ref={this.optionPrice} defaultValue={this.state.options[i].optionPrice} onChange={event => this.handleOptionChange(i, parseFloat(event.target.value))} />
+              </div>
+              <div className="col-sm-1">
+                <TrashButton 
+                  onClick={() => this.handleOptionTrashClick(i)}
+                />
               </div>
             </div>
           ))}
