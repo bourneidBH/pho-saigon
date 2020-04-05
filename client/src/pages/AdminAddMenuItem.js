@@ -167,13 +167,25 @@ class AdminAddMenuItem extends React.Component {
                                 <label htmlFor="image">Image File Name</label>
                                 <input className="form-control" name="image" id="image" defaultValue={"./images/" + this.state.image} type="text" placeholder="Image File Name" onChange={this.handleChange} />
                             </div>
+                            {this.state.options.length > 0 ?
+                                <div>
+                                <p><strong>Options:</strong></p>
+                                {this.state.options.map(option => (
+                                    <div>
+                                        <ul>
+                                            <li>{option.optionName}{option.optionPrice > 0 ? ": $" + option.optionPrice : null}</li>
+                                        </ul>
+                                    </div>
+                                ))}
+                                </div>
+                                : null}
+                            
                             <AddOptionForm
                                 optionName={this.optionName}
                                 optionPrice={this.optionPrice}
                                 handleChange={this.handleChange}
                                 addOption={this.addOption}
                             />
-
                             <button className="btn btn-primary" type="submit" name="action" onClick={this.handleFormSubmit}>Add Item</button>
                         </form>
                     </Container>
