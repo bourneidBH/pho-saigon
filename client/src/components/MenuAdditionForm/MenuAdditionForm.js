@@ -1,6 +1,7 @@
 import React from "react";
 import "./MenuAdditionForm.css";
 import Container from "../Container";
+import AddOptionForm from "../AddOptionForm";
 
 function MenuForm(props) {
     const {
@@ -58,6 +59,12 @@ function MenuForm(props) {
                     <label htmlFor="image">Image File Name</label>
                     <input className="form-control" name="image" id="image" defaultValue={"./images/" + image} type="text" placeholder="Image File Name" onChange={handleChange} />
                 </div>
+                <AddOptionForm
+                    optionName={this.optionName}
+                    handleChange={this.handleChange}
+                    addOption={this.addOption}
+                />
+
                 <button className="btn btn-primary" type="submit" name="action" onClick={handleFormSubmit}>Add Item</button>
             </form>
         </Container>

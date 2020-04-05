@@ -3,6 +3,7 @@ import Container from '../Container';
 import API from '../../utils/API';
 import "./EditMenuItemForm.css";
 import TrashButton from "../TrashButton";
+import AddOptionForm from "../AddOptionForm";
 
 class EditMenuItemForm extends React.Component {
   constructor(props) {
@@ -14,6 +15,7 @@ class EditMenuItemForm extends React.Component {
     this.handleOptionChange = this.handleOptionChange.bind(this);
     this.handleOptionTrashClick = this.handleOptionTrashClick.bind(this);
     this.resetForm = this.resetForm.bind(this);
+    this.addOption = this.addOption.bind(this);
     this.description = React.createRef();
     this.price = React.createRef();
     this.itemNameVietnamese = React.createRef();
@@ -31,7 +33,9 @@ class EditMenuItemForm extends React.Component {
       price: "",
       image: "",
       options: [],
+      optionName: "",
       optionPrice: "",
+      optionType: "",    
     };
   };
 
@@ -52,16 +56,27 @@ class EditMenuItemForm extends React.Component {
     console.log("Option " + i + " of item " + this.state.selectedItemId + " clicked");
     const item = this.state.selectedItem;
     const updatedOptions = item.options.slice(0, i).concat(item.options.slice(i + 1, item.options.length));
-    // const updatedItem = {
-    //     ...item,
-    //     options: [
-    //         ...updatedOptions
-    //     ]
-    // }
-    // console.log("updated item: ", updatedItem);
     this.setState({
       options: updatedOptions
     });
+  };
+
+  addOption = event => {
+    event.preventDefault();
+
+    const newOption = {
+      optionName: this.state.optionName,
+      optionPrice: this.state.optionPrice,
+      optionType: this.state.optionType,
+    }
+
+    const updatedOptions = [
+      ...this.state.options.concat(newOption)
+    ]
+
+    this.setState({
+      options: updatedOptions
+    }, () => console.log("updated options: ", this.state.options))
   };
 
   // Handles updating component state when the user changes drop-down selection
@@ -142,7 +157,9 @@ class EditMenuItemForm extends React.Component {
       price: "",
       image: "",
       options: [],
-      optionPrice: "",    
+      optionName: "",
+      optionPrice: "",
+      optionType: "",    
     });
   }
 
@@ -239,6 +256,39 @@ class EditMenuItemForm extends React.Component {
               </div>
             </div>
           ))}
+          <AddOptionForm 
+            optionName={this.optionName}
+            handleChange={this.handleChange}
+            addOption={this.addOption}
+          />
+          {/* <div className="form-group">
+            <p>Add an option to this item <AddOptionButton /></p>
+            
+            <div className="collapse" id="collapseExample">
+              <div className="form-group row">
+                <div className="col-sm-4">
+                  <input className="form-control" name="optionName" id="optionName" type="text" value={this.optionName} placeholder="Option name" onChange={this.handleChange} />
+                </div>
+                <div className="col-sm-6">
+                  <div className="form-check form-check-inline">
+                    <input className="form-check-input" type="radio" name="optionType" id="radio" value="radio" onChange={this.handleChange} />
+                    <label className="form-check-label" htmlFor="radio">
+                      Allow only 1 selection
+                    </label>
+                  </div>
+                  <div className="form-check form-check-inline">
+                    <input className="form-check-input" type="radio" name="optionType" id="checkbox" value="checkbox" onChange={this.handleChange} />
+                    <label className="form-check-label" htmlFor="checkbox">
+                      Allow multiple option selections
+                    </label>
+                  </div>
+                </div>
+                <div className="col-sm-2">
+                  <button className="btn btn-sm btn-secondary" type="submit" onClick={this.addOption}>Add option</button>
+                </div>
+              </div>
+            </div>
+          </div> */}
           <button className="btn btn-secondary" type="submit" id={this.state.selectedItem._id} value="Submit">Submit</button>
         </form>
       </Container>

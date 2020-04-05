@@ -3,6 +3,7 @@ import Header from "../components/Header";
 // import MenuAdditionForm from "../components/MenuAdditionForm";
 import Container from "../components/Container";
 import Jumbotron from "../components/Jumbotron";
+import AddOptionForm from "../components/AddOptionForm";
 import API from "../utils/API";
 
 class AdminAddMenuItem extends React.Component {
@@ -11,6 +12,7 @@ class AdminAddMenuItem extends React.Component {
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSelectionChange = this.handleSelectionChange.bind(this);
+        this.addOption = this.addOption.bind(this);
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
 
         this.state = {
@@ -22,6 +24,10 @@ class AdminAddMenuItem extends React.Component {
             categoryName: "",
             price: "",
             image: "",
+            options: [],
+            optionName: "",
+            optionType: "",
+            optionPrice: "",
         };
     }
 
@@ -37,6 +43,25 @@ class AdminAddMenuItem extends React.Component {
         });
     };
 
+    // handles adding option to menu item
+    addOption = event => {
+        event.preventDefault();
+    
+        const newOption = {
+          optionName: this.state.optionName,
+          optionPrice: this.state.optionPrice,
+          optionType: this.state.optionType,
+        }
+    
+        const updatedOptions = [
+          ...this.state.options.concat(newOption)
+        ]
+    
+        this.setState({
+          options: updatedOptions
+        }, () => console.log("updated options: ", this.state.options))
+    };
+
     // Handles form submit
     handleFormSubmit = event => {
         event.preventDefault();
@@ -48,7 +73,8 @@ class AdminAddMenuItem extends React.Component {
             description: this.state.description,
             categoryName: this.state.categoryName,
             price: this.state.price,
-            image: this.state.image
+            image: this.state.image,
+            options: this.state.options,
         };
         console.log("item to be added: ", newItem);
 
@@ -141,6 +167,13 @@ class AdminAddMenuItem extends React.Component {
                                 <label htmlFor="image">Image File Name</label>
                                 <input className="form-control" name="image" id="image" defaultValue={"./images/" + this.state.image} type="text" placeholder="Image File Name" onChange={this.handleChange} />
                             </div>
+                            <AddOptionForm
+                                optionName={this.optionName}
+                                optionPrice={this.optionPrice}
+                                handleChange={this.handleChange}
+                                addOption={this.addOption}
+                            />
+
                             <button className="btn btn-primary" type="submit" name="action" onClick={this.handleFormSubmit}>Add Item</button>
                         </form>
                     </Container>

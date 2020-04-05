@@ -1,0 +1,16 @@
+.material-icons {
+  vertical-align: text-bottom;
+  margin-left: .5rem;
+}
+.add {
+  background-color: transparent;
+  background-repeat:no-repeat;
+  border: none;
+  cursor:pointer;
+  overflow: hidden;
+  outline:none;
+}
+.add:visited .add:active .add:hover {
+  border: none;
+  outline: none;
+}
