@@ -136,10 +136,10 @@ class DeleteMenuItemForm extends React.Component {
             </select>
           </div>
           {this.state.selectedItemId !== "" ? 
-            <div>
+            <div className="padding-bottom">
                 <p>Are you sure you want to delete {this.state.selectedItem.itemName}?</p>
-                <button className="btn btn-outline-secondary" onClick={this.resetForm}>No</button>
-                <button className="btn btn-secondary" type="submit" value="submit">Yes</button>
+                <button className="btn btn-outline-secondary float-left" onClick={this.resetForm}>No</button>
+                <button className="btn btn-secondary float-left" type="submit" value="submit">Yes</button>
             </div>
             : null 
           }

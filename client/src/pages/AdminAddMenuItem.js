@@ -187,7 +187,7 @@ class AdminAddMenuItem extends React.Component {
                                 handleChange={this.handleChange}
                                 addOption={this.addOption}
                             />
-                            <button className="btn btn-primary" type="submit" name="action" onClick={this.handleFormSubmit}>Add Item</button>
+                            <button className="btn btn-secondary" type="submit" name="action" onClick={this.handleFormSubmit}>Add Item</button>
                         </form>
                     </Container>
                 </main>

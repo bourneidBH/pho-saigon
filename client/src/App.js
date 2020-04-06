@@ -10,6 +10,7 @@ import FindUs from "./pages/FindUs";
 import Contact from "./pages/Contact";
 import AdminEditMenuItem from './pages/AdminEditMenuItem';
 import AdminDeleteMenuItem from './pages/AdminDeleteMenuItem';
+import AdminMain from './pages/AdminMain';
 
 function App() {
   return (
@@ -25,6 +26,8 @@ function App() {
           <Route exact path="/admin/addItem" component={AdminAddMenuItem} />
           <Route exact path="/admin/editItem" component={AdminEditMenuItem} />
           <Route exact path="/admin/deleteItem" component={AdminDeleteMenuItem} />
+          <Route exact path="/admin/deleteItem" component={AdminDeleteMenuItem} />
+          <Route exact path="/admin/main" component={AdminMain} />
           <Route component={NoMatch} />
         </Switch>
       </div>

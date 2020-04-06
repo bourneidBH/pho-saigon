@@ -26,7 +26,8 @@ code {
   padding: 0;
 }
 .centered {
-  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
   text-align: center;
 }
 .container-fluid {
@@ -39,6 +40,14 @@ p a {
 .price {
   float: right;
   font-weight: bold;
+}
+
+.float-left {
+  float: left;
+  margin-right: 20px;
+}
+.padding-bottom {
+  padding-bottom: 40px;
 }
 
 @media (max-width: 991px) {
