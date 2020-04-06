@@ -7,12 +7,8 @@ function Hours() {
         <Container>
             <h2 className="centered">Hours</h2>
             <p className="centered">
-                Open 7 days a week.
-            </p>
-            <p className="centered">
-                Sunday - Thursday 10am - 9pm.
-            </p>
-            <p className="centered">
+                <strong>Open 7 days a week.</strong> <br />
+                Sunday - Thursday 10am - 9pm. <br />
                 Friday and Saturday 10am - 10pm.
             </p>
 

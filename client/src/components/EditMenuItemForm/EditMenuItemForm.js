@@ -21,6 +21,7 @@ class EditMenuItemForm extends React.Component {
     this.itemNameVietnamese = React.createRef();
     this.itemName = React.createRef();
     this.optionPrice = React.createRef();
+    this.image = React.createRef();
 
     this.state = {
       menu: [],
@@ -175,6 +176,7 @@ class EditMenuItemForm extends React.Component {
       itemNameVietnamese: this.itemNameVietnamese.current.value,
       description: this.description.current.value,
       price: this.price.current.value,
+      image: this.image.current.value,
       options: this.state.options,
     }
 
@@ -239,6 +241,10 @@ class EditMenuItemForm extends React.Component {
           <div className="form-group">
               <label htmlFor="price">Price</label>
               <input className="form-control" name="price" id="price" ref={this.price} defaultValue={this.state.selectedItem.price} type="number" step={0.01} />
+          </div>
+          <div className="form-group">
+              <label htmlFor="image">Image file name (include file path ./images/)</label>
+              <input className="form-control" name="image" id="image" ref={this.image} type="text" defaultValue={this.state.selectedItem.image} />
           </div>
 
           {this.state.options.length > 0 ? <p><strong>Options for this item:</strong></p> : null}
