@@ -46,9 +46,6 @@ p a {
   float: left;
   margin-right: 20px;
 }
-.padding-bottom {
-  padding-bottom: 40px;
-}
 
 @media (max-width: 991px) {
   .bg-main {

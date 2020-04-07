@@ -7,6 +7,7 @@ import Home from "./pages/Home";
 import AdminAddMenuItem from "./pages/AdminAddMenuItem";
 import NoMatch from "./pages/NoMatch";
 import FindUs from "./pages/FindUs";
+import AboutUs from "./pages/AboutUs";
 import Contact from "./pages/Contact";
 import AdminEditMenuItem from './pages/AdminEditMenuItem';
 import AdminDeleteMenuItem from './pages/AdminDeleteMenuItem';
@@ -22,6 +23,7 @@ function App() {
           <Route exact path="/menu" component={Menu} />
           <Route exact path="/api/menu" component={Menu} />
           <Route exact path="/location" component={FindUs} />
+          <Route exact path="/about" component={AboutUs} />
           <Route exact path="/contact" component={Contact} />
           <Route exact path="/admin/addItem" component={AdminAddMenuItem} />
           <Route exact path="/admin/editItem" component={AdminEditMenuItem} />

@@ -1,0 +1,16 @@
+.inner {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+h3 {
+  background-color: transparent;
+  color: #0d5243;
+  font-weight: normal;
+}
+
+@media (max-width: 768px) {
+  .inner {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
