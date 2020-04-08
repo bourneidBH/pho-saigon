@@ -17,13 +17,13 @@ function About() {
         </div>
         <div className="row">
           <div className="col-md-6">
-            <h3>What people are saying:</h3> 
+            <h3 className="subhead">What people are saying:</h3> 
             <blockquote>“Don't let this place fool you. Yes, it's clean. Yes, it's authentic. It's not every day you hear these words put together to describe a local pho spot, but this place is it. I've been here a few times and the service has always been good. The employees treat you well.” – Peter H.</blockquote>
             <blockquote>“Love, love, love the special Bahn Mi!!!! Stopped in to get a 6 inch sandwich with some egg rolls. It's absolutely delicious!!! The bread on the sandwich is perfect. It bread comes out warm but has great crunch. The meats are superb. Everything about this sandwich is divine.”  - Sarah I.</blockquote>
             <p>Check us out on <a href="https://www.yelp.com/biz/pho-saigon-west-allis" target="_blank">Yelp.com</a> for more reviews.</p>
           </div>
           <div className="col-md-6">
-            <img src="./images/counter.jpg" alt="Pho Saigon" />
+            <img src="./images/counter.jpg" alt="Pho Saigon" className="img-pad-top" />
           </div>
         </div>
       </div>

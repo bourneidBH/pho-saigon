@@ -46,10 +46,26 @@ p a {
   float: left;
   margin-right: 20px;
 }
+.inner {
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-bottom: 15px;
+}
+.img-pad-top {
+  padding-top: 10px;
+}
+.h3-small {
+  font-size: 1.5rem;
+}
 
 @media (max-width: 991px) {
   .bg-main {
     min-width: 100%;
   }
-  
+}
+@media screen and (max-width: 600px) {
+  .inner {
+      padding-left: 5px;
+      padding-right: 5px;
+  }
 }

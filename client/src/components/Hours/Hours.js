@@ -1,10 +1,10 @@
 import React from "react";
 import "./Hours.css";
-import Container from "../Container";
+// import Container from "../Container";
 
 function Hours() {
     return (
-        <Container>
+        <div>
             <h2 className="centered">Hours</h2>
             <p className="centered">
                 <strong>Open 7 days a week.</strong> <br />
@@ -14,12 +14,10 @@ function Hours() {
 
             <h2 className="centered">Location</h2>
             <p className="centered">
-                10534 W Greenfield Ave, West Allis, WI 53124
+                10534 W Greenfield Ave, West Allis, WI 53124<br />
+                <span className="phone"><a href="tel:4148289698">414-828-9698</a></span>
             </p>
-            <p className="phone centered">
-                <a href="tel:4148289698">414-828-9698</a>
-            </p>
-        </Container>
+        </div>
     )
 }
 

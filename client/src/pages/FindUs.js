@@ -16,7 +16,9 @@ function FindUs() {
                         lead="Authentic Vietnamese and Chinese cuisine in West Allis"
                     />
                 </Container>
-                <Hours />
+                <Container>
+                    <Hours />
+                </Container>
                 <Map />
             </main>
         </div>

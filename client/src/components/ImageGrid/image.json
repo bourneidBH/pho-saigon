@@ -1,0 +1,57 @@
+[
+    {
+        "id": 1,
+        "name": "Bahn Mi Sandwich",
+        "image": "./images/bahn-mi-sandwich.jpg"
+    },
+    {
+        "id": 2,
+        "name": "Beef Fried Rice",
+        "image": "./images/beef-fried-rice.jpg"
+    },
+    {
+        "id": 3,
+        "name": "Fried Chicken Dumplings",
+        "image": "./images/fried-chicken-dumplings.jpg"
+    },
+    {
+        "id": 4,
+        "name": "Grilled Beef Vermicelli",
+        "image": "./images/Grilled-beef-vermicelli.jpg"
+    },
+    {
+        "id": 5,
+        "name": "Lemongrass Chicken",
+        "image": "./images/lemongrass-chicken.jpg"
+    },
+    {
+        "id": 6,
+        "name": "Pho Combo",
+        "image": "./images/pho-combo.jpg"
+    },
+    {
+        "id": 7,
+        "name": "Pho Special",
+        "image": "./images/pho-special.jpg"
+    },
+    {
+        "id": 8,
+        "name": "Pho Tofu",
+        "image": "./images/pho-tofu.jpg"
+    },
+    {
+        "id": 9,
+        "name": "Pho Well-Done Brisket",
+        "image": "./images/pho-well-done-brisket.jpg"
+    },
+    {
+        "id": 10,
+        "name": "Shrimp Mango Salad",
+        "image": "./images/shrimp-mango-salad.jpg"
+    },
+    {
+        "id": 11,
+        "name": "Chicken Wings",
+        "image": "./images/sweet-sour-wings.jpg"
+    }
+]
