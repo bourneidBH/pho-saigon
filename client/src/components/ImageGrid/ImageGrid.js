@@ -12,18 +12,16 @@ class ImageGrid extends React.Component {
 
   // random resort of items in array to change display order of images
   shuffleArray = array => {
-    let i = array.length - 1;
-    for (; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      const temp = array[i];
-      array[i] = array[j];
-      array[j] = temp;
+    for (let i = array.length - 1; i > 0; i--) {
+      let j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
     }
     return array;
   };
 
   componentDidMount() {
     this.shuffleArray(images);
+    this.setState(images)
   };
   
   render() {

@@ -1,6 +1,6 @@
 import React from "react";
 
-function ImageButton(props) {
+function Image(props) {
 
     const { id, image, name } = props;
 
@@ -11,4 +11,4 @@ function ImageButton(props) {
     );
 }
 
-export default ImageButton;
+export default Image;

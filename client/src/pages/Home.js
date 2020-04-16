@@ -23,7 +23,7 @@ function Home() {
                     We look forward to serving you again soon.</h3>
                     <div className="row">
                         <div className="col-md-7">
-                            <p>At Pho Saigon, we specialize in affordable, authentic Vietnamese cuisine made with the freshest ingredients. Whether you’re a fan of Vietnamese cuisine or looking to try it for the first time, our welcoming staff and great food will keep you coming back.</p>
+                            <p>At Pho Saigon, we specialize in affordable, authentic Vietnamese cuisine made with the freshest ingredients. Whether you’re a fan of Vietnamese cuisine or looking to try it for the first time, our welcoming staff and great food will keep you coming back. Dine in or carry-out available.</p>
                             <Hours />
                         </div>
                         <div className="col-md-5">
