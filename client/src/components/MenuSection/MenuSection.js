@@ -294,7 +294,7 @@ class MenuSection extends React.Component {
     render() {        
         return (
             <div>
-                <p className="centered margin-bottom">Dine in or carry out. For carry-out call <a href="tel:4148289698">414-828-9698</a> or use the online order form below. Pay at the restaurant when you pick up your order.</p>
+                <p className="centered margin-bottom">For carry-out call <a href="tel:4148289698">414-828-9698</a> or use the online order form below. Pay at the restaurant when you pick up your order.</p>
                 <p className="centered">
                     {this.state.order.length > 0 ?                     
                     <button className="btn btn-secondary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">

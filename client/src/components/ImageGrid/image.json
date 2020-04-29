@@ -53,5 +53,20 @@
         "id": 11,
         "name": "Chicken Wings",
         "image": "./images/sweet-sour-wings.jpg"
+    },
+    {
+        "id": 12,
+        "name": "Lobster",
+        "image": "./images/lobster.jpg"
+    },
+    {
+        "id": 13,
+        "name": "Thai Hot Pot",
+        "image": "./images/thai-hot-pot.jpg"
+    },
+    {
+        "id": 14,
+        "name": "Shrimp with Salt and Pepper",
+        "image": "./images/salt-pepper-shrimp.jpg"
     }
 ]
