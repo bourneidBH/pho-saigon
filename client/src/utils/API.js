@@ -12,6 +12,12 @@ export default {
     return axios.post('/api/menu', itemData);
   },
 
+  // save menu item to database
+  // saveCategory: categoryData => {
+  //   console.log("data to save: ", categoryData);
+  //   return axios.post('/api/menu', categoryData);
+  // },
+  
   //get specific menu item by id
   getItem: id => {
     return axios.get(`/api/menu/${id}`)

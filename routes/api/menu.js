@@ -5,7 +5,8 @@ const menuController = require("../../controllers/menuController");
 router
     .route("/")
     .get(menuController.findAll)
-    .post(menuController.create);
+    .post(menuController.create)
+    // .post(menuController.createCategory);
 
 // Matches with '/api/menu/:id'
 router

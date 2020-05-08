@@ -18,7 +18,8 @@ if (process.env.NODE_ENV === "production") {
 app.use(routes);
 
 // If deployed, use the deployed database. Otherwise use the local database
-const MONGODB_URI = process.env.MONGODB_URI || "mongodb://phosaigon:phomongo1@ds235840.mlab.com:35840/heroku_ptd3qd59" || "mongodb://localhost:27017/phoSaigon";
+const MONGODB_URI = process.env.MONGODB_URI || process.env.MONGOLAB_URI || 
+"mongodb://localhost:27017/phoSaigon";
 
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.set('useFindAndModify', false);

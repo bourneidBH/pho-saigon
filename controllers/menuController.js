@@ -20,19 +20,19 @@ module.exports = {
       };
     })
   },
-  // create: function(req, res) {
+  // createCategory: function(req, res) {
   //   db.MenuCategory
   //     .create(req.body)
   //     .then(dbMenuCategory => res.json(dbMenuCategory))
   //     .catch(err => console.log(err));
   // },
-  // update: function(req, res) {
+  // updateCategory: function(req, res) {
   //   db.MenuCategory
   //     .findOneAndUpdate({ _id: req.params.id }, req.body)
   //     .then(dbMenuCategory => res.json(dbMenuCategory))
   //     .catch(err => console.log(err));
   // },
-  // remove: function(req, res) {
+  // removeCategory: function(req, res) {
   //   db.MenuCategory
   //     .findById({ _id: req.params.id })
   //     .then(dbMenuCategory => dbMenuCategory.remove())

@@ -18,7 +18,7 @@ MenuCategorySchema.virtual('categoryItems', {
     justOne: false,
     options: {
         sort: {
-            date: 1
+            menuItemId: 1
         }
     }
 });
