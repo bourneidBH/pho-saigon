@@ -6,25 +6,25 @@ const creds = require('../../config/config');
 
 // Email routes
 
-// const transporter = nodemailer.createTransport({
-//   service: 'gmail',
-//   auth: {
-//     xoauth2: xoauth2.createXOAuth2Generator({
-//       user: creds.USER,
-//       clientId: creds.CLIENT_ID,
-//       clientSecret: creds.CLIENT_SECRET,
-//       refreshToken: ''
-//     })
-//   }
-// });
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: creds.USER,
-    pass: creds.PASS
-  },
-  tls: { rejectUnauthorized: false }
+    xoauth2: xoauth2.createXOAuth2Generator({
+      user: creds.USER,
+      clientId: creds.CLIENT_ID,
+      clientSecret: creds.CLIENT_SECRET,
+      refreshToken: ''
+    })
+  }
 });
+// const transporter = nodemailer.createTransport({
+//   service: 'gmail',
+//   auth: {
+//     user: creds.USER,
+//     pass: creds.PASS
+//   },
+//   tls: { rejectUnauthorized: false }
+// });
 
 // transporter.verify(error => {
 //   if (error) {
