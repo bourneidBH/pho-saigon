@@ -36,7 +36,7 @@ class MenuSection extends React.Component {
         API.getMenuItems()
         .then(res => {
             this.setState({menu: res.data});
-            console.log("menu items: ", res.data);
+            // console.log("menu items: ", res.data);
         })
         .catch(err => console.log(err))
     };
@@ -233,22 +233,11 @@ class MenuSection extends React.Component {
         const phone = document.getElementById('phone').value;
         const email = document.getElementById('email').value;
         const pickupTime = document.getElementById('pickuptime').value;
-        const orderDetails = this.state.order.map(item => (
-            <p>Quantity ({item.quantity}): {item.menuItemId}. {item.itemName} ${item.price * item.quantity}
-                {item.options.length > 0 ? 
-                <ul>
-                    {item.options.map((option, i) => (
-                        <li key={i}>{option.optionName} ${option.optionPrice * item.quantity}</li>
-                    ))}
-                </ul>
-                : null
-            }
-            </p>
-        ));
+        const orderDetails = document.getElementById('orderDetails').innerHTML;
         const specialRequests = document.getElementById('specialrequests').value;
-        const orderSubtotal = <p>Subtotal: ${this.calculateSubtotal()}</p>
-        const tax = <p>Tax: ${this.calculateTax()}</p>
-        const total = <p>Total: ${this.calculateTotal()}</p>
+        const orderSubtotal = document.getElementById('subtotal').innerText;
+        const tax = document.getElementById('tax').innerText;
+        const total = document.getElementById('total').innerText;
 
         axios({
             method: 'POST',
@@ -310,7 +299,7 @@ class MenuSection extends React.Component {
                                     <h6>
                                         <div className="form-check form-check-inline">
                                             <label className="form-check-label" htmlFor="quantity">Qty</label>
-                                            <input className="form-control form-control-sm quantity" name="quantity" 
+                                            <input className="form-control form-control-sm quantity" name="quantity"  
                                                 type="number" min="1" defaultValue="1" 
                                                 onChange={event => this.handleQuantityChange(index, parseInt(event.target.value))} 
                                             />
@@ -350,10 +339,26 @@ class MenuSection extends React.Component {
                             ))}
                         </ul>
                         <hr />
-                        <p>Subtotal: <span className="price">${this.calculateSubtotal()}</span></p>
-                        <p>Tax: <span className="price">${this.calculateTax()}</span></p>
-                        <p>Total: <span className="price">${this.calculateTotal()}</span></p>
+                        <p id="subtotal">Subtotal: <span className="price">${this.calculateSubtotal()}</span></p>
+                        <p id="tax">Tax: <span className="price">${this.calculateTax()}</span></p>
+                        <p id="total">Total: <span className="price">${this.calculateTotal()}</span></p>
                         <hr />
+                        <div id="orderDetails">
+                            {this.state.order.map((item, index) => (
+                                <div key={index}>Quantity ({item.quantity}): {item.menuItemId}. {item.itemName} ${item.price * item.quantity}
+                                    {item.options.length > 0 ? 
+                                    <ul>
+                                        {item.options.map((option, i) => (
+                                            <li key={i}>{option.optionName} ${option.optionPrice * item.quantity}</li>
+                                        ))}
+                                    </ul>
+                                    : null
+                                    }
+                                </div>
+                            ))
+                            }
+                        </div>
+
                         <h5>Your Contact Info</h5>
                         <form id="order-form" onSubmit={this.handleOrderSubmit} method="POST">
                             <div className="form-group row">

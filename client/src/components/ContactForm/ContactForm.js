@@ -30,16 +30,31 @@ class ContactForm extends React.Component {
 
     axios({
       method: 'POST',
-      path: '/api/email.php',
-      headers: { 'content-type': 'application/json' },
-      data: this.state
+      url: '/api/sendmessage',
+      headers: { 
+        'Accept': 'application/json',
+        'Content-Type': 'application/json' 
+      },
+      data: {
+        name: this.state.name,
+        email: this.state.email,
+        message: this.state.message
+      }
     })
-    .then(result => {
-      this.setState({
-        mailSent: result.data.sent
-      })
+    .then(response => {
+      if (response.data.msg === 'success') {
+        alert('Thank you for contacting us.');
+        this.setState({
+          mailSent: response.data.sent
+        });  
+    } else if (response.data.msg === 'fail') {
+        alert("We're sorry! Your message failed to send. Please try again or call 414-828-9698.");
+    }
     })
-    .catch(error => this.setState({ error: error.message}));
+    .catch(err => {
+      this.setState({ err: err.message});
+      console.log(err);
+    });
 
     // clear form
     if (this.state.mailSent) {
@@ -57,7 +72,7 @@ class ContactForm extends React.Component {
       <Container>
         <p className="centered">Call <a href="tel:4148289698" className="phone">414-828-9698</a> or fill out the form below.</p>
         <p>&nbsp;</p>
-        <form action="api/email.php" method="POST">
+        <form onSubmit={this.handleSubmit} method="POST">
           <div className="row">
             <div className="col">
               <div className="form-group">

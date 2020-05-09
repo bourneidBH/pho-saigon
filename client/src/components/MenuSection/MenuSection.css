@@ -40,3 +40,6 @@ h3 {
     margin: 0 20px;
     width: 3rem;
 }
+#orderDetails {
+    display: none;
+}
