@@ -1,22 +1,38 @@
 const router = require('express').Router();
 const nodemailer = require('nodemailer');
-const xoauth2 = require('xoauth2');
+const { google } = require('googleapis');
+const OAuth2 = google.auth.OAuth2;
 const menuRoutes = require('./menu');
 const creds = require('../../config/config');
 
 // Email routes
 
+const oauth2Client = new OAuth2(
+  creds.CLIENT_ID, // ClientID
+  creds.CLIENT_SECRET, // Client Secret
+  "https://developers.google.com/oauthplayground" // Redirect URL
+);
+
+oauth2Client.setCredentials({
+  refresh_token: creds.REFRESH_TOKEN
+});
+const accessToken = oauth2Client.getAccessToken();
+
+
+
 const transporter = nodemailer.createTransport({
-  host: 'smtp.gmail.com',
-    port: 465,
-    secure: true,
+  service: 'gmail',
     auth: {
       type: 'OAuth2',
       user: creds.USER,
       clientId: creds.CLIENT_ID,
       clientSecret: creds.CLIENT_SECRET,
+      refreshToken: creds.REFRESH_TOKEN,
+      accessToken: accessToken
     }
   });
+
+// use this for testing on localhost. Make sure to change https://myaccount.google.com/lesssecureapps to on
 // const transporter = nodemailer.createTransport({
 //   service: 'gmail',
 //   auth: {
@@ -26,13 +42,13 @@ const transporter = nodemailer.createTransport({
 //   tls: { rejectUnauthorized: false }
 // });
 
-// transporter.verify(error => {
-//   if (error) {
-//     console.log('Email transporter error: ', error)
-//   } else {
-//     console.log('The server is ready to take messages.')
-//   };
-// });
+transporter.verify(error => {
+  if (error) {
+    console.log('Email transporter error: ', error)
+  } else {
+    console.log('The server is ready to take messages.')
+  };
+});
 
 // order form email
 router.post('/sendorder', (req, res, next) => {
