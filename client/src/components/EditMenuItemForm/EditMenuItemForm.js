@@ -167,7 +167,7 @@ class EditMenuItemForm extends React.Component {
   handleSubmit = (event) => {
     event.preventDefault();
 
-    const id = this.state.selectedItem._id;
+    const id = this.state.selectedItem.menuItemId;
 
     const itemData = {
       _id: this.state.selectedItem._id,

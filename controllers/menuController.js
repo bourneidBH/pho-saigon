@@ -61,7 +61,7 @@ module.exports = {
   },
   update: function(req, res) {
     db.MenuItem
-      .findOneAndUpdate({ _id: req.params.id }, req.body)
+      .findOneAndUpdate({ menuItemId: req.body.menuItemId }, req.body)
       .then(dbMenuItem => res.json(dbMenuItem))
       .catch(err => console.log(err));
   },
