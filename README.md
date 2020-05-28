@@ -2,7 +2,7 @@
 
 This full stack React app is a website for a local restaurant. It includes a database of menu items. Customers can add items to an order, modify their order, and submit. There are also forms for the site administrator to add, edit, or delete menu items.
 
-**Deployed App:** https://morning-brook-92300.herokuapp.com/
+**Deployed App:** http://phosaigon-mke.com/
 
 ## Getting started: 
 This full-stack React app has two package.json files, one in the root directory and one in the client folder. To start a development server, clone the repo and then run npm install from both the root and client. Then start up MongoDB by running the command mongod in a new terminal window. Run npm start to start the development server.
