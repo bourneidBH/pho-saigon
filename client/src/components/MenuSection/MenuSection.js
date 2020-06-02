@@ -168,7 +168,7 @@ class MenuSection extends React.Component {
 
     calculateTax = () => {
         const subtotal = this.calculateSubtotal();
-        const tax = (subtotal * .056).toFixed(2);
+        const tax = (subtotal * .06).toFixed(2);
         return tax; 
     };
 
