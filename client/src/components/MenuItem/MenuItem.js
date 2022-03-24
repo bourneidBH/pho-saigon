@@ -22,7 +22,7 @@ function MenuItem(props) {
                     {price ? "$" + price : "Market price"}
                 </p>
                 <br /><br />
-                <OrderButton
+                {/* <OrderButton
                 menuItemId={menuItemId}
                 itemName={itemName}
                 optionName={optionName}
@@ -30,7 +30,7 @@ function MenuItem(props) {
                 price={price}
                 buttonText="Add to order"
                 callback={callback}
-                />
+                /> */}
                 
             </div>
         </div>

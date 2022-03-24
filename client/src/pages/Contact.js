@@ -2,7 +2,7 @@ import React from 'react';
 import Header from '../components/Header';
 import Jumbotron from '../components/Jumbotron';
 import Container from '../components/Container';
-import ContactForm from '../components/ContactForm';
+// import ContactForm from '../components/ContactForm';
 
 function Contact() {
   return (
@@ -15,7 +15,7 @@ function Contact() {
             lead="Authentic Vietnamese and Chinese cuisine in West Allis"
           />
         </Container>
-        <ContactForm />
+        {/* <ContactForm /> */}
       </main>
     </div>
   );

@@ -1,7 +1,8 @@
 .logo-box {
     max-width: 25%;
     position: relative;
-    margin: auto;
+    /* margin: auto; */
+    margin-left: 30px;
     padding-top: 15px;
     z-index: 1100;
 }

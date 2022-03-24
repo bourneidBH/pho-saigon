@@ -9,12 +9,12 @@ function Navbar() {
                     <span className="navbar-toggler-icon"></span>
                 </button>
 
-                <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div className="collapse navbar-collapse" id="navbarNavAltMarkup" style={{justifyContent: "flex-end"}}>
                     <div className="navbar-nav">
                         <a className="nav-item nav-link" href="/menu">Menu</a>
-                        <a className="nav-item nav-link menu-left" href="/location">Find Us</a>
-                        <a className="nav-item nav-link menu-right" href="/about">About</a>
-                        <a className="nav-item nav-link" href="/contact">Contact</a>
+                        <a className="nav-item nav-link" href="/location">Find Us</a>
+                        <a className="nav-item nav-link" href="/about">About</a>
+                        {/* <a className="nav-item nav-link" href="/contact">Contact</a> */}
                     </div>
                 </div>
             </nav>

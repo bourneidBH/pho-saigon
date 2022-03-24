@@ -25,7 +25,7 @@ function App() {
           <Route exact path="/api/menu" component={Menu} />
           <Route exact path="/location" component={FindUs} />
           <Route exact path="/about" component={AboutUs} />
-          <Route exact path="/contact" component={Contact} />
+          {/* <Route exact path="/contact" component={Contact} /> */}
           <Route exact path="/admin/addItem" component={AdminAddMenuItem} />
           <Route exact path="/admin/editItem" component={AdminEditMenuItem} />
           <Route exact path="/admin/deleteItem" component={AdminDeleteMenuItem} />

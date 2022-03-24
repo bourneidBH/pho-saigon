@@ -15,10 +15,10 @@ class ItemOptionsForm extends React.Component {
     render() {
         return (
             <div className="form-check form-check-inline">
-                {this.props.optionType === "radio" ? 
+                {/* {this.props.optionType === "radio" ? 
                     <input className="form-check-input" type="radio" name={this.props.menuItemId} id={this.props.optionName} value={this.props.optionName} onChange={this.handleChange} /> : 
                     <input className="form-check-input" type="checkbox" name={this.props.menuItemId} id={this.props.optionName} value={this.props.optionName} onChange={this.handleChange} />
-                }
+                } */}
                 <label className="form-check-label option" htmlFor={this.props.optionName}>{this.props.optionPrice ? this.props.optionName + " $" + this.props.optionPrice : this.props.optionName}</label>
             </div>
         )
