@@ -1,15 +1,16 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from "react-dom/client"
 import './index.css';
 import App from './App';
-import { GlobalStateProvider } from "./utils/useGlobalState";
+import { BrowserRouter } from 'react-router-dom';
 import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(
-    <GlobalStateProvider>
+const container = document.getElementById('root');
+const root = createRoot(container); // createRoot(container!) if you use TypeScript
+root.render(
+    <BrowserRouter>
         <App />
-    </GlobalStateProvider>
-, document.getElementById('root')
+    </BrowserRouter>
 );
 
 // If you want your app to work offline and load faster, you can change
