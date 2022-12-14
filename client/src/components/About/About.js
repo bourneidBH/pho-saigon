@@ -16,6 +16,13 @@ function About() {
           </div>
         </div>
         <div className="row">
+          <div className="col-md-10 offset-md-1">
+            <p>We look forward to hearing from you! Contact us at:</p>
+            <a className="btn btn-secondary btn-sm" href="tel:+14148289698" style={{float: "left", margin: 0}}>(414) 828-9698</a>
+          </div>
+        </div>
+
+        <div className="row">
           <div className="col-md-6">
             <h3 className="subhead">What people are saying:</h3> 
             <blockquote>“Don't let this place fool you. Yes, it's clean. Yes, it's authentic. It's not every day you hear these words put together to describe a local pho spot, but this place is it. I've been here a few times and the service has always been good. The employees treat you well.” – Peter H.</blockquote>

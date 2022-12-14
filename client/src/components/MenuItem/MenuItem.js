@@ -3,7 +3,8 @@ import "./MenuItem.css";
 import OrderButton from "../OrderButton";
 
 function MenuItem(props) {
-    const { menuItemId, itemName, itemNameVietnamese, description, price, image, callback, optionName, categoryName } = props;
+    const { item, callback } = props;
+    const { menuItemId, itemName, itemNameVietnamese, description, price, image } = item;
     
     return (
         <div className="row">
@@ -22,15 +23,11 @@ function MenuItem(props) {
                     {price ? "$" + price : "Market price"}
                 </p>
                 <br /><br />
-                {/* <OrderButton
-                menuItemId={menuItemId}
-                itemName={itemName}
-                optionName={optionName}
-                categoryName={categoryName}
-                price={price}
-                buttonText="Add to order"
-                callback={callback}
-                /> */}
+                <OrderButton
+                    item={item}
+                    buttonText="Add to preview"
+                    callback={callback}
+                />
                 
             </div>
         </div>

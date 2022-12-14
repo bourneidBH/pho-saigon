@@ -1,28 +1,42 @@
-import React from "react";
+import { useState } from "react";
 import "./ItemOptionsForm.css";
 
-class ItemOptionsForm extends React.Component {
-    constructor(props) {
-        super(props)
+const ItemOptionsForm = ({categoryName, menuItemId, optionName, optionPrice, optionType, checked, callback}) => {
+    const [newCheckedVal, setNewCheckedVal] = useState(checked);
 
-        this.handleChange = this.handleChange.bind(this);
-    }
-    
-    handleChange() {
-        this.props.callback(this.props.categoryName, this.props.menuItemId, this.props.optionName, this.props.optionPrice, this.props.optionType)
+    const handleChange = () => {
+        setNewCheckedVal(!newCheckedVal)
+        callback(categoryName, menuItemId, optionName, !newCheckedVal)
     }
 
-    render() {
-        return (
-            <div className="form-check form-check-inline">
-                {/* {this.props.optionType === "radio" ? 
-                    <input className="form-check-input" type="radio" name={this.props.menuItemId} id={this.props.optionName} value={this.props.optionName} onChange={this.handleChange} /> : 
-                    <input className="form-check-input" type="checkbox" name={this.props.menuItemId} id={this.props.optionName} value={this.props.optionName} onChange={this.handleChange} />
-                } */}
-                <label className="form-check-label option" htmlFor={this.props.optionName}>{this.props.optionPrice ? this.props.optionName + " $" + this.props.optionPrice : this.props.optionName}</label>
-            </div>
-        )
-    }
+    return (
+        <div className="form-check form-check-inline">
+            {optionType === "radio" ? (
+                <input 
+                    className="form-check-input" 
+                    type="radio" 
+                    checked={newCheckedVal}
+                    name={menuItemId} 
+                    id={optionName} 
+                    value={optionName} 
+                    onChange={handleChange} 
+                />
+            ) : (
+                <input 
+                    className="form-check-input" 
+                    type="checkbox"
+                    checked={newCheckedVal} 
+                    name={menuItemId} 
+                    id={optionName} 
+                    value={optionName} 
+                    onChange={handleChange} 
+                />
+            )}
+            <label className="form-check-label option" htmlFor={optionName}>
+                {optionPrice ? `${optionName} ${optionPrice}` : optionName}
+            </label>
+        </div>
+    )
 }
 
 export default ItemOptionsForm;
