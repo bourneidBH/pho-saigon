@@ -3,6 +3,7 @@ const router = require('express').Router();
 // const { google } = require('googleapis');
 // const OAuth2 = google.auth.OAuth2;
 const menuRoutes = require('./menu');
+const categoryRoutes = require('./category')
 // const creds = require('../../config/config');
 
 // Email routes
@@ -128,5 +129,6 @@ const menuRoutes = require('./menu');
 
 // Menu routes
 router.use('/menu', menuRoutes);
+router.use('/category', categoryRoutes);
 
 module.exports = router;

@@ -6,7 +6,6 @@ import Container from "../Container";
 import MenuItem from "../MenuItem";
 import ItemOptionsForm from "../ItemOptionsForm";
 import TrashButton from "../TrashButton";
-import menuCategories from "../../utils/menucategories.js";
 
 const defaultContactInfo = {
   name: "",
@@ -18,12 +17,14 @@ const defaultContactInfo = {
 
 const MenuSection = () => {
   const [menu, setMenu] = useState([])
+  const [categories, setCategories] = useState([])
   const [order, setOrder] = useState([])
   const [selectedOptions, setSelectedOptions] = useState([])
   const [contactInfo, setContactInfo] = useState(defaultContactInfo)
 
   useEffect(() => {
     loadMenuItems()
+    loadCategories()
   }, []);
 
   const loadMenuItems = async () => {
@@ -35,7 +36,16 @@ const MenuSection = () => {
     }
   }
 
-  const handleOptionChange = (categoryName, menuItemId, optionName, checked) => {
+  const loadCategories = async () => {
+    try {
+      const res = await API.getCategories()
+      setCategories(res?.data)
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  const handleOptionChange = (menuItemId, optionName, checked) => {
     const menuItem = menu?.find(item => item.menuItemId === menuItemId);
     const option = menuItem?.options?.find(option => option.optionName === optionName);
     let updatedOptions = menuItem?.options
@@ -348,13 +358,12 @@ const MenuSection = () => {
 
         </div>
       </div>
-      {menuCategories.map(MenuCategory => (
+      {categories?.map(MenuCategory => (
         <Container key={MenuCategory._id}>
           <div className="inner">
             <h3>{MenuCategory.categoryName}</h3>
 
-            {menu
-            .filter(item => item.categoryName === MenuCategory.categoryName) 
+            {menu?.filter(item => item.categoryName === MenuCategory.categoryName) 
             .map((item, i) => (
               <div key={i}>
                 <MenuItem 

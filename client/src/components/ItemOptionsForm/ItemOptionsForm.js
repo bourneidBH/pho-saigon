@@ -1,12 +1,12 @@
 import { useState } from "react";
 import "./ItemOptionsForm.css";
 
-const ItemOptionsForm = ({categoryName, menuItemId, optionName, optionPrice, optionType, checked, callback}) => {
+const ItemOptionsForm = ({menuItemId, optionName, optionPrice, optionType, checked, callback}) => {
     const [newCheckedVal, setNewCheckedVal] = useState(checked);
 
     const handleChange = () => {
         setNewCheckedVal(!newCheckedVal)
-        callback(categoryName, menuItemId, optionName, !newCheckedVal)
+        callback(menuItemId, optionName, !newCheckedVal)
     }
 
     return (
