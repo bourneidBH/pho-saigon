@@ -7,9 +7,7 @@ function Hours() {
         <div>
             <h2 className="centered">Hours</h2>
             <p className="centered">
-                <strong>Open 7 days a week.</strong> <br />
-                Sunday - Thursday 10am - 9pm. <br />
-                Friday and Saturday 10am - 10pm.
+                <strong>Open 7 days a week 10am - 9pm.</strong>
             </p>
 
             <h2 className="centered">Location</h2>
