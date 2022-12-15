@@ -3,7 +3,6 @@ const menuCategories = [
   {"_id":"5e13c4449b099c0ae962d892","categoryName":"Pho"},
   {"_id":"5e13c4629b099c0ae962d89e","categoryName":"Salads"},
   {"_id":"5e13c4899b099c0ae962d8a5","categoryName":"Sandwiches"},
-  {"_id":"5e13c4cd9b099c0ae962d8bd","categoryName":"Hot Pots"},
   {"_id":"5e13c50e9b099c0ae962d8cc","categoryName":"Vermicelli (Dry Noodles)"},
   {"_id":"5e13c5209b099c0ae962d8d4","categoryName":"Specials"},
   {"_id":"5e13c5379b099c0ae962d8da","categoryName":"Rice Dishes"},

@@ -13,7 +13,6 @@ import AdminEditMenuItem from './pages/AdminEditMenuItem';
 import AdminDeleteMenuItem from './pages/AdminDeleteMenuItem';
 import AdminMain from './pages/AdminMain';
 import AdminAddCategory from "./pages/AdminAddCategory";
-import AdminDeleteCategory from './pages/AdminDeleteCategory';
 import { MenuContext } from './ctx/menuContext';
 import API from './utils/API';
 
@@ -59,7 +58,6 @@ function App() {
         <Route path="/admin/deleteItem" element={<AdminDeleteMenuItem />} />
         <Route path="/admin/main" element={<AdminMain />} />
         <Route path="/admin/addcategory" element={<AdminAddCategory />} />
-        <Route path="/admin/deletecategory" element={<AdminDeleteCategory />} />
         <Route element={<NoMatch />} />
       </Routes>
     </div>
