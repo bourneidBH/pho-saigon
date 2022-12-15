@@ -21,9 +21,8 @@ app.use(routes);
 // If deployed, use the deployed database. Otherwise use the local database
 const MONGODB_URI = process.env.DB_URI || "mongodb://localhost:27017/phoSaigon";
 
-mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
-mongoose.set('useFindAndModify', false);
-mongoose.set('useCreateIndex', true);
+mongoose.connect(MONGODB_URI);
+mongoose.set("strictQuery", false)
 
 // Start the API server
 app.listen(PORT, function() {

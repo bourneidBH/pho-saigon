@@ -24,19 +24,19 @@
   },
   "homepage": "https://github.com/BourneID7/pho-saigon#readme",
   "dependencies": {
-    "axios": "^0.21.4",
+    "axios": "^1.2.1",
     "cors": "^2.8.5",
-    "dotenv": "^8.6.0",
-    "express": "^4.17.1",
-    "googleapis": "^50.0.0",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "googleapis": "^109.0.1",
     "if-env": "^1.0.4",
-    "mongo-seeding": "^3.6.0",
-    "mongoose": "^5.12.7",
-    "nodemailer": "^6.7.2",
+    "mongo-seeding": "^3.7.2",
+    "mongoose": "^6.8.0",
+    "nodemailer": "^6.8.0",
     "nodemailer-smtp-transport": "^2.7.4",
     "xoauth2": "^1.2.0"
   },
   "devDependencies": {
-    "concurrently": "^5.3.0"
+    "concurrently": "^7.6.0"
   }
 }

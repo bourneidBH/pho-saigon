@@ -1,30 +1,21 @@
 import React from "react";
 import "./OrderButton.css";
 
-class OrderButton extends React.Component {
-    constructor(props) {
-        super(props)
+const OrderButton = (props) => {
+    const { item, callback, buttonText } = props
 
-        this.handleClick = this.handleClick.bind(this);
-    };
-
-    handleClick() {
-        this.props.callback({
-            categoryName: this.props.categoryName, 
-            menuItemId: this.props.menuItemId, 
-            itemName: this.props.itemName,
-            price: this.props.price,
+    const handleClick = () => {
+        const selectedItem = {
+            ...item,
             options: [],
-            quantity: 1
-        })
-    };
+            quantity: 1,
+        }
+        callback(selectedItem)
+    }
 
-    render() {
-        return (
-            <button className="btn btn-outline-secondary btn-sm" onClick={this.handleClick}>{this.props.buttonText}</button>
-        )
-
-    };
-};
+    return (
+        <button className="btn btn-outline-secondary btn-sm" onClick={handleClick}>{buttonText}</button>
+    )
+}
 
 export default OrderButton;

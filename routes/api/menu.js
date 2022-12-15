@@ -1,12 +1,11 @@
 const router = require("express").Router();
-const menuController = require("../../controllers/menuController");
+const { menuController } = require("../../controllers");
 
 // Matches with '/api/menu'
 router
     .route("/")
     .get(menuController.findAll)
     .post(menuController.create)
-    // .post(menuController.createCategory);
 
 // Matches with '/api/menu/:id'
 router
