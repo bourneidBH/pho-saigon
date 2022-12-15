@@ -4,12 +4,15 @@ import './index.css';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 import * as serviceWorker from './serviceWorker';
+import MenuProvider from './ctx/menuContext'
 
 const container = document.getElementById('root');
 const root = createRoot(container); // createRoot(container!) if you use TypeScript
 root.render(
     <BrowserRouter>
-        <App />
+        <MenuProvider>
+            <App />
+        </MenuProvider>
     </BrowserRouter>
 );
 

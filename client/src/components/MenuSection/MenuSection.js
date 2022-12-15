@@ -1,11 +1,11 @@
-import { useState, useEffect } from "react";
-import API from "../../utils/API.js";
+import { useState, useContext } from "react";
 import axios from 'axios';
 import "./MenuSection.css";
 import Container from "../Container";
 import MenuItem from "../MenuItem";
 import ItemOptionsForm from "../ItemOptionsForm";
 import TrashButton from "../TrashButton";
+import { MenuContext } from "../../ctx/menuContext.js";
 
 const defaultContactInfo = {
   name: "",
@@ -16,34 +16,10 @@ const defaultContactInfo = {
 }
 
 const MenuSection = () => {
-  const [menu, setMenu] = useState([])
-  const [categories, setCategories] = useState([])
+  const { menu, categories } = useContext(MenuContext)
   const [order, setOrder] = useState([])
   const [selectedOptions, setSelectedOptions] = useState([])
   const [contactInfo, setContactInfo] = useState(defaultContactInfo)
-
-  useEffect(() => {
-    loadMenuItems()
-    loadCategories()
-  }, []);
-
-  const loadMenuItems = async () => {
-    try {
-      const res = await API.getMenuItems()
-      setMenu(res?.data)
-    } catch (err) {
-      console.log(err)
-    }
-  }
-
-  const loadCategories = async () => {
-    try {
-      const res = await API.getCategories()
-      setCategories(res?.data)
-    } catch (err) {
-      console.log(err)
-    }
-  }
 
   const handleOptionChange = (menuItemId, optionName, checked) => {
     const menuItem = menu?.find(item => item.menuItemId === menuItemId);

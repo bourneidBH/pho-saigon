@@ -8,7 +8,6 @@ export default {
 
   // save menu item to database
   saveItem: itemData => {
-    console.log("data to save: ", itemData);
     return axios.post('/api/menu', itemData);
   },
   
@@ -24,7 +23,6 @@ export default {
 
   // Post route to update menu item in database
   updateItem: (id, itemData) => {
-    console.log("data to update: ", itemData);
     return axios.put(`/api/menu/${id}`, itemData)
   },
 
@@ -45,13 +43,11 @@ export default {
 
   // Post route to update menu category in database
   updateCategory: (id, catData) => {
-    console.log("data to update: ", catData);
     return axios.put(`/api/category/${id}`, catData)
   },
 
   // save category to database
   saveCategory: categoryData => {
-    console.log("data to save: ", categoryData);
     return axios.post('/api/category', categoryData);
   },
 };

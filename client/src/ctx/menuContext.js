@@ -1,41 +1,43 @@
-import { useState, useEffect, useContext, createContext } from "react"
+import { useState, useEffect, createContext } from "react"
 import API from "../utils/API"
 
 export const MenuContext = createContext()
 
-export const MenuProvider = (props) => {
+export default ({children}) => {
   const [menu, setMenu] = useState([])
+  const [categories, setCategories] = useState([])
 
   useEffect(() => {
     loadMenuItems()
+    loadCategories()
   }, [])
-
-  console.log("menu", menu)
 
   const loadMenuItems = async () => {
     try {
       const res = await API.getMenuItems()
-      console.log("res", res)
       setMenu(res?.data)
     } catch (err) {
       console.log(err)
     }
   }
 
+  const loadCategories = async () => {
+    try {
+      const res = await API.getCategories()
+      setCategories(res?.data)
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  const ctx = {
+    menu,
+    setMenu,
+    categories,
+    setCategories
+  }
+
   return (
-    <MenuContext.Provider 
-      {...props}
-      value={{
-        menu,
-        setMenu,
-      }}
-    />
+    <MenuContext.Provider value={ctx}>{children}</MenuContext.Provider>
   )
 }
-
-export const MenuContextConsumer = () => {
-  return <MenuContext.Consumer />
-}
-
-
-export const useMenuContext = () => useContext(MenuContext)

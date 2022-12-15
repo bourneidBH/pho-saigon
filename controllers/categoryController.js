@@ -6,6 +6,7 @@ module.exports = {
   findAll: function(req, res) {
     db.MenuCategory
       .find(req.query)
+      .sort({ _id: 1 })
       .then(dbMenuCategories => res.json(dbMenuCategories))
       .catch(err => console.log(err))
   },
@@ -29,9 +30,8 @@ module.exports = {
   },
   remove: function(req, res) {
     db.MenuCategory
-      .findById({ _id: req.params.id })
-      .then(dbMenuCategory => dbMenuCategory.remove())
+      .findOneAndDelete({ _id: req.params.id })
       .then(dbMenuCategories => res.json(dbMenuCategories))
       .catch(err => console.log(err));
-  },
+  }
 };
