@@ -31,7 +31,7 @@
     "if-env": "^1.0.4",
     "mongo-seeding": "^3.7.2",
     "mongoose": "^6.8.0",
-    "nodemailer-smtp-transport": "^2.7.4"
+    "nodemailer-smtp-transport": "^2.4.2"
   },
   "devDependencies": {
     "concurrently": "^7.6.0"

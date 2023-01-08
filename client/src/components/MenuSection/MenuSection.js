@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import axios from 'axios';
+// import axios from 'axios';
 import "./MenuSection.css";
 import Container from "../Container";
 import MenuItem from "../MenuItem";
@@ -165,13 +165,16 @@ const MenuSection = () => {
     setOrder(updatedOrder);
   };
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target
-    setContactInfo({
-      ...contactInfo,
-      [name]: value
-    })
-  };
+  // For email order submission.
+  // Currently disabled because we don't have an email address to send to
+
+  // const handleInputChange = (e) => {
+  //   const { name, value } = e.target
+  //   setContactInfo({
+  //     ...contactInfo,
+  //     [name]: value
+  //   })
+  // };
 
   const resetOrderForm = () => {
     document.getElementById('order-form').reset();
@@ -182,40 +185,41 @@ const MenuSection = () => {
 
   // this is set up to work with Nodemailer on backend. 
   // Currently disabled because we don't have an email address to send to
-  const handleOrderSubmit = async (e) => {
-    e.preventDefault();
-    try {
+  
+  // const handleOrderSubmit = async (e) => {
+  //   e.preventDefault();
+  //   try {
 
-      const response = await axios({
-        method: 'POST',
-        url: "/api/sendorder",
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-          },
-        data: {
-          name: contactInfo.name,
-          phone: contactInfo.phone,
-          email: contactInfo.email,
-          pickupTime: contactInfo.pickupTime,
-          orderDetails: document.getElementById('orderDetails').innerHTML,
-          specialRequests: contactInfo.specialRequests,
-          orderSubtotal: `$${calculateSubtotal()}`,
-          tax: `$${calculateTax()}`,
-          total: `$${calculateTotal()}`
-        }
-      })
-      console.log(response)
-      if (response?.data?.msg === "success") {
-        alert('Thank you for your order. We will contact you if we have any questions.')
-        resetOrderForm()
-      } else if (response.data.msg === 'fail') {
-        alert("We're sorry! Your order didn't go through. Please call 414-828-9698.");
-      }
-    } catch (err) {
-      console.log(err)
-    }
-  }
+  //     const response = await axios({
+  //       method: 'POST',
+  //       url: "/api/sendorder",
+  //       headers: {
+  //           'Accept': 'application/json',
+  //           'Content-Type': 'application/json'
+  //         },
+  //       data: {
+  //         name: contactInfo.name,
+  //         phone: contactInfo.phone,
+  //         email: contactInfo.email,
+  //         pickupTime: contactInfo.pickupTime,
+  //         orderDetails: document.getElementById('orderDetails').innerHTML,
+  //         specialRequests: contactInfo.specialRequests,
+  //         orderSubtotal: `$${calculateSubtotal()}`,
+  //         tax: `$${calculateTax()}`,
+  //         total: `$${calculateTotal()}`
+  //       }
+  //     })
+  //     console.log(response)
+  //     if (response?.data?.msg === "success") {
+  //       alert('Thank you for your order. We will contact you if we have any questions.')
+  //       resetOrderForm()
+  //     } else if (response.data.msg === 'fail') {
+  //       alert("We're sorry! Your order didn't go through. Please call 414-828-9698.");
+  //     }
+  //   } catch (err) {
+  //     console.log(err)
+  //   }
+  // }
 
   return (
     <div>
