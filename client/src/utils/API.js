@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export default {
+const API = {
   // get all menu items
   getMenuItems: () => {
     return axios.get('/api/menu')
@@ -51,3 +51,5 @@ export default {
     return axios.post('/api/category', categoryData);
   },
 };
+
+export default API
