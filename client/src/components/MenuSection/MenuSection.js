@@ -1,7 +1,6 @@
 import { useState, useContext } from "react";
 // import axios from 'axios';
 import "./MenuSection.css";
-import Container from "../Container";
 import MenuItem from "../MenuItem";
 import ItemOptionsForm from "../ItemOptionsForm";
 import TrashButton from "../TrashButton";
