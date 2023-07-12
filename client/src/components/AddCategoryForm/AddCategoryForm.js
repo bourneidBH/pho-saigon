@@ -1,5 +1,4 @@
 import React from "react";
-import Container from "../Container";
 import API from "../../utils/API";
 
 class AddCategoryForm extends React.Component {
@@ -42,16 +41,14 @@ class AddCategoryForm extends React.Component {
 
   render() {
     return(
-      <Container>
-        <form>
-          <div className="form-group">
-              <label htmlFor="categoryName">Menu Category Name</label>
-              <input className="form-control" name="categoryName" id="categoryName" value={this.state.categoryName} type="text" placeholder="Category Name" onChange={this.handleChange} />
-          </div>
-          <button className="btn btn-secondary" type="submit" name="action" onClick={this.handleSubmit}>Add Category</button>
-        </form>
+      <form>
+        <div className="form-group">
+            <label htmlFor="categoryName">Menu Category Name</label>
+            <input className="form-control" name="categoryName" id="categoryName" value={this.state.categoryName} type="text" placeholder="Category Name" onChange={this.handleChange} />
+        </div>
+        <button className="btn btn-secondary" type="submit" name="action" onClick={this.handleSubmit}>Add Category</button>
+      </form>
 
-      </Container>
     )
   };
 

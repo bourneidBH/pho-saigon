@@ -339,7 +339,7 @@ const MenuSection = () => {
         </div>
       </div>
       {categories?.map(MenuCategory => (
-        <Container key={MenuCategory._id}>
+        <div key={MenuCategory._id}>
           <div className="inner">
             <h3>{MenuCategory.categoryName}</h3>
 
@@ -373,7 +373,7 @@ const MenuSection = () => {
               </div>
             ))}
           </div>
-        </Container>
+        </div>
       ))}
     </div>
   )

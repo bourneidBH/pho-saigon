@@ -1,6 +1,5 @@
 import React from 'react';
 import './ContactForm.css';
-import Container from "../Container";
 import axios from 'axios';
 
 class ContactForm extends React.Component {
@@ -69,7 +68,7 @@ class ContactForm extends React.Component {
 
   render() {
     return (
-      <Container>
+      <>
         <p className="centered">Call <a href="tel:4148289698" className="phone">414-828-9698</a> or fill out the form below.</p>
         <p>&nbsp;</p>
         <form onSubmit={this.handleSubmit} method="POST">
@@ -100,7 +99,7 @@ class ContactForm extends React.Component {
             }
           </div>
         </form>
-      </Container>
+      </>
     )
   };
 };

@@ -1,5 +1,4 @@
 import { useContext, useState } from "react";
-import Container from "../Container";
 import API from "../../utils/API";
 import "./DeleteMenuItemForm.css";
 import { MenuContext } from "../../ctx/menuContext";
@@ -37,27 +36,25 @@ const DeleteMenuItemForm = () => {
   };
 
     return(
-    <Container>
-      <form id="delete-item-form" onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="selectItem">Select an item to delete</label>
-          <select className="form-control" id="_id" name="_id"  onChange={handleItemChange}>
-            <option value="">Select an item to delete</option>
-            {menu?.length > 0 && menu?.map((item, i) => (
-              <option key={item._id} value={item._id} onChange={handleItemChange}>{item.menuItemId}. {item.itemName}</option>
-            ))}
-          </select>
+    <form id="delete-item-form" onSubmit={handleSubmit}>
+      <div className="form-group">
+        <label htmlFor="selectItem">Select an item to delete</label>
+        <select className="form-control" id="_id" name="_id"  onChange={handleItemChange}>
+          <option value="">Select an item to delete</option>
+          {menu?.length > 0 && menu?.map((item, i) => (
+            <option key={item._id} value={item._id} onChange={handleItemChange}>{item.menuItemId}. {item.itemName}</option>
+          ))}
+        </select>
+      </div>
+      {selectedItem !== null ? 
+        <div className="padding-bottom">
+            <p>Are you sure you want to delete {selectedItem.itemName}?</p>
+            <button className="btn btn-outline-secondary float-left" onClick={resetForm}>No</button>
+            <button className="btn btn-secondary float-left" type="submit" value="submit">Yes</button>
         </div>
-        {selectedItem !== null ? 
-          <div className="padding-bottom">
-              <p>Are you sure you want to delete {selectedItem.itemName}?</p>
-              <button className="btn btn-outline-secondary float-left" onClick={resetForm}>No</button>
-              <button className="btn btn-secondary float-left" type="submit" value="submit">Yes</button>
-          </div>
-          : null 
-        }
-      </form>
-    </Container>
+        : null 
+      }
+    </form>
   )
 }
 
