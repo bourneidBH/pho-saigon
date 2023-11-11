@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/BourneID7/pho-saigon#readme",
   "dependencies": {
-    "axios": "^1.2.1",
+    "axios": "^1.6.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
