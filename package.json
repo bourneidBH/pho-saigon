@@ -27,7 +27,7 @@
     "axios": "^1.7.4",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
-    "express": "^4.21.1",
+    "express": "^4.21.2",
     "if-env": "^1.0.4",
     "mongo-seeding": "^3.7.2",
     "mongoose": "^8.8.3",
